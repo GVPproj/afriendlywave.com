@@ -1,0 +1,51 @@
+---
+interface Props {
+  feed?: string;
+  hideArtwork?: boolean;
+  mini?: boolean;
+  light?: boolean;
+}
+
+const {
+  feed = '/afriendlywave/',
+  hideArtwork = false,
+  mini = true,
+  light = false
+} = Astro.props;
+
+const params = new URLSearchParams({
+  feed: feed,
+  hide_cover: '1',
+  ...(hideArtwork && { hide_artwork: '1' }),
+  ...(mini && { mini: '1' }),
+  ...(light && { light: '1' }),
+});
+
+const iframeSrc = `https://www.mixcloud.com/widget/iframe/?${params.toString()}`;
+---
+
+<div class="mixcloud-player">
+  <iframe
+    src={iframeSrc}
+    allow="autoplay"
+    loading="lazy"
+  ></iframe>
+</div>
+
+<style>
+  .mixcloud-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 50;
+  }
+
+  .mixcloud-player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
