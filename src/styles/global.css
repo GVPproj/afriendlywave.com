@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Panchi Mono';
+  src: url('/fonts/panchi-mono.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Panchi Mono', ui-monospace, monospace;
+  --color-primary: #001A72;
+  --color-text: #F0F0EB;
+  --color-link: #FD8200;
+  --color-link-hover: #FFEA48;
+}
+
+a {
+  color: var(--color-link);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
