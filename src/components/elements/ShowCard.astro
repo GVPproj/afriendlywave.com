@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+  imageUrl: string;
+  feedKey: string; // e.g. "/afriendlywave/show-name/"
+}
+const { name, imageUrl, feedKey } = Astro.props;
+---
+
+<button
+  type="button"
+  data-feed={feedKey}
+  class="show-card block max-w-[300px] text-left cursor-pointer border border-text/20 rounded-md p-3"
+>
+  <div class="aspect-square overflow-hidden rounded">
+    <img
+      src={imageUrl}
+      alt={name}
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+  <p class="mt-2 text-text text-sm truncate">{name}</p>
+</button>

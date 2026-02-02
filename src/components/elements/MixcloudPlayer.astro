@@ -26,6 +26,7 @@ const iframeSrc = `https://www.mixcloud.com/widget/iframe/?${params.toString()}`
 
 <div class="mixcloud-player">
   <iframe
+    id="mixcloud-player"
     src={iframeSrc}
     allow="autoplay"
     loading="lazy"
@@ -49,3 +50,19 @@ const iframeSrc = `https://www.mixcloud.com/widget/iframe/?${params.toString()}`
     border: none;
   }
 </style>
+
+<script>
+  window.addEventListener('mixcloud:play', (e: CustomEvent) => {
+    const iframe = document.getElementById(
+      'mixcloud-player'
+    ) as HTMLIFrameElement;
+    if (iframe && e.detail?.feed) {
+      const params = new URLSearchParams({
+        feed: e.detail.feed,
+        hide_cover: '1',
+        mini: '1',
+      });
+      iframe.src = `https://www.mixcloud.com/widget/iframe/?${params}`;
+    }
+  });
+</script>

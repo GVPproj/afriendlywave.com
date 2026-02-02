@@ -1,0 +1,41 @@
+---
+import ShowCard from './ShowCard.astro';
+
+interface Props {
+  username?: string;
+  limit?: number;
+}
+
+const { username = 'afriendlywave', limit = 12 } = Astro.props;
+
+const response = await fetch(
+  `https://api.mixcloud.com/${username}/cloudcasts/?limit=${limit}`
+);
+const data = await response.json();
+const shows = data.data || [];
+---
+
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  {
+    shows.map((show: any) => (
+      <ShowCard
+        name={show.name}
+        imageUrl={show.pictures.large}
+        feedKey={show.key}
+      />
+    ))
+  }
+</div>
+
+<script>
+  document.querySelectorAll('.show-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const feed = card.getAttribute('data-feed');
+      if (feed) {
+        window.dispatchEvent(
+          new CustomEvent('mixcloud:play', { detail: { feed } })
+        );
+      }
+    });
+  });
+</script>
