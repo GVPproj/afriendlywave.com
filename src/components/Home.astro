@@ -12,14 +12,18 @@ const newestShow = data.data?.[0];
 ---
 
 <main class="mx-6 mt-16 mb-32 flex flex-col gap-16">
-  <div class="flex flex-col lg:flex-row lg:items-stretch lg:justify-center gap-6">
-    {newestShow && (
-      <ShowCard
-        name={newestShow.name}
-        imageUrl={newestShow.pictures.extra_large}
-        feedKey={newestShow.key}
-      />
-    )}
+  <div
+    class="flex flex-col gap-6 lg:flex-row lg:items-stretch lg:justify-center"
+  >
+    {
+      newestShow && (
+        <ShowCard
+          name={newestShow.name}
+          imageUrl={newestShow.pictures.extra_large}
+          feedKey={newestShow.key}
+        />
+      )
+    }
     <TShirt />
   </div>
   <p class="text-text">
