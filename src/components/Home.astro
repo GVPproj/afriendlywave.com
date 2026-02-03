@@ -1,15 +1,16 @@
 ---
 import ShowGrid from "./elements/ShowGrid.astro";
+import Hero from "./elements/Hero.astro";
 ---
 
 <main class="mx-6 mt-16 mb-32 flex flex-col gap-16">
-  <p class="text-text max-w-prose">
-    A Friendly Wave is a unique cultural experiment that celebrates Salt Spring
-    Island's creative spirit while introducing new perspectives on how we
-    experience music together. Whether you're an audiophile, a casual listener,
-    or simply curious about mindful cultural experiences, the Salt Spring
-    Listening Space offers something transformative.
+  <Hero />
+  <p class="text-text">
+    <span class="text-link-hover">A Friendly Wave</span> is a unique cultural experiment
+    that celebrates Salt Spring Island's creative spirit while introducing new perspectives
+    on how we experience music together. Whether you're an audiophile, a casual listener,
+    or simply curious about mindful cultural experiences, the Salt Spring Listening
+    Space offers something transformative.
   </p>
-
   <ShowGrid />
 </main>

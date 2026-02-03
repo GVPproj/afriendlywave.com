@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 45">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&amp;display=swap');
+  </style>
+  <text
+    x="0"
+    y="35"
+    font-family="Fraunces, serif"
+    font-weight="700"
+    font-size="36"
+    fill="currentColor"
+  >groundwaves</text>
+</svg>

@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+import tshirtImage from "../../assets/AFW_002_S02_1.2.png";
+---
+
+<section
+  class="border border-text/20 rounded-md p-6 md:max-w-2xl md:flex md:gap-8 md:items-start self-center"
+>
+  <div
+    class="aspect-4/5 overflow-hidden rounded-md max-w-xs mx-auto md:mx-0 md:shrink-0 md:w-64"
+  >
+    <Image
+      src={tshirtImage}
+      alt="A Friendly Wave T-Shirt"
+      class="w-full h-full object-cover"
+    />
+  </div>
+
+  <div class="md:flex md:flex-col md:justify-center md:py-4">
+    <h2 class="mt-4 md:mt-0 text-lg text-text">T-Shirt Pre-Order</h2>
+    <p class="text-text/60 text-sm">(Local Pickup Only)</p>
+
+    <fieldset class="mt-4">
+      <legend class="sr-only">Select size</legend>
+      <div class="flex gap-2">
+        <label class="size-option">
+          <input type="radio" name="size" value="sm" class="sr-only peer" />
+          <span
+            class="block px-4 py-2 border border-text/20 rounded cursor-pointer peer-checked:border-link peer-checked:text-link hover:border-text/40"
+            >SM</span
+          >
+        </label>
+        <label class="size-option">
+          <input
+            type="radio"
+            name="size"
+            value="md"
+            class="sr-only peer"
+            checked
+          />
+          <span
+            class="block px-4 py-2 border border-text/20 rounded cursor-pointer peer-checked:border-link peer-checked:text-link hover:border-text/40"
+            >MD</span
+          >
+        </label>
+        <label class="size-option">
+          <input type="radio" name="size" value="lg" class="sr-only peer" />
+          <span
+            class="block px-4 py-2 border border-text/20 rounded cursor-pointer peer-checked:border-link peer-checked:text-link hover:border-text/40"
+            >LG</span
+          >
+        </label>
+        <label class="size-option">
+          <input type="radio" name="size" value="xl" class="sr-only peer" />
+          <span
+            class="block px-4 py-2 border border-text/20 rounded cursor-pointer peer-checked:border-link peer-checked:text-link hover:border-text/40"
+            >XL</span
+          >
+        </label>
+      </div>
+    </fieldset>
+
+    <button
+      type="button"
+      class="mt-6 w-full py-3 bg-link text-primary rounded-md cursor-pointer hover:bg-link-hover transition-colors"
+    >
+      Pre-Order Now
+    </button>
+  </div>
+</section>
