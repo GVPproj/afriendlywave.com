@@ -3,69 +3,71 @@ import { Image } from "astro:assets";
 import tshirtImage from "../../assets/AFW_002_S02_1.2.png";
 ---
 
-<section
-  class="w-full border border-text/20 rounded-md p-6 lg:max-w-2xl lg:grid lg:grid-cols-[auto_1fr] lg:grid-rows-[1fr_auto] lg:gap-x-8"
->
+<section class="border-text/20 w-full rounded-md border p-6 lg:flex-1">
   <div
-    class="aspect-4/5 overflow-hidden rounded-md max-w-xs mx-auto lg:mx-0 lg:w-64"
+    class="mx-auto max-w-125 lg:grid lg:grid-cols-[auto_1fr] lg:grid-rows-[1fr_auto] lg:gap-x-8 lg:gap-y-6"
   >
-    <Image
-      src={tshirtImage}
-      alt="A Friendly Wave T-Shirt"
-      class="w-full h-full object-cover"
-    />
+    <div
+      class="mx-auto aspect-4/5 max-w-xs overflow-hidden rounded-md lg:mx-0 lg:w-64"
+    >
+      <Image
+        src={tshirtImage}
+        alt="A Friendly Wave T-Shirt"
+        class="h-full w-full object-cover"
+      />
+    </div>
+
+    <div>
+      <h2 class="text-text mt-4 text-lg lg:mt-0">T-Shirt Pre-Order</h2>
+      <p class="text-text/60 text-sm">(Local Pickup Only)</p>
+
+      <fieldset class="mt-4">
+        <legend class="sr-only">Select size</legend>
+        <div class="flex gap-2">
+          <label class="size-option">
+            <input type="radio" name="size" value="sm" class="peer sr-only" />
+            <span
+              class="border-text/20 peer-checked:border-link peer-checked:text-link hover:border-text/40 block cursor-pointer rounded border px-4 py-2"
+              >SM</span
+            >
+          </label>
+          <label class="size-option">
+            <input
+              type="radio"
+              name="size"
+              value="md"
+              class="peer sr-only"
+              checked
+            />
+            <span
+              class="border-text/20 peer-checked:border-link peer-checked:text-link hover:border-text/40 block cursor-pointer rounded border px-4 py-2"
+              >MD</span
+            >
+          </label>
+          <label class="size-option">
+            <input type="radio" name="size" value="lg" class="peer sr-only" />
+            <span
+              class="border-text/20 peer-checked:border-link peer-checked:text-link hover:border-text/40 block cursor-pointer rounded border px-4 py-2"
+              >LG</span
+            >
+          </label>
+          <label class="size-option">
+            <input type="radio" name="size" value="xl" class="peer sr-only" />
+            <span
+              class="border-text/20 peer-checked:border-link peer-checked:text-link hover:border-text/40 block cursor-pointer rounded border px-4 py-2"
+              >XL</span
+            >
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <button
+      type="button"
+      disabled
+      class="bg-link text-primary hover:bg-link-hover disabled:bg-link/50 disabled:hover:bg-link/50 mt-6 w-full cursor-pointer rounded-md py-3 transition-colors disabled:cursor-not-allowed lg:col-span-2 lg:mt-0"
+    >
+      Coming Soon...
+    </button>
   </div>
-
-  <div>
-    <h2 class="mt-4 lg:mt-0 text-lg text-text">T-Shirt Pre-Order</h2>
-    <p class="text-text/60 text-sm">(Local Pickup Only)</p>
-
-    <fieldset class="mt-4">
-      <legend class="sr-only">Select size</legend>
-      <div class="flex gap-2">
-        <label class="size-option">
-          <input type="radio" name="size" value="sm" class="sr-only peer" />
-          <span
-            class="block px-4 py-2 border border-text/20 rounded cursor-pointer peer-checked:border-link peer-checked:text-link hover:border-text/40"
-            >SM</span
-          >
-        </label>
-        <label class="size-option">
-          <input
-            type="radio"
-            name="size"
-            value="md"
-            class="sr-only peer"
-            checked
-          />
-          <span
-            class="block px-4 py-2 border border-text/20 rounded cursor-pointer peer-checked:border-link peer-checked:text-link hover:border-text/40"
-            >MD</span
-          >
-        </label>
-        <label class="size-option">
-          <input type="radio" name="size" value="lg" class="sr-only peer" />
-          <span
-            class="block px-4 py-2 border border-text/20 rounded cursor-pointer peer-checked:border-link peer-checked:text-link hover:border-text/40"
-            >LG</span
-          >
-        </label>
-        <label class="size-option">
-          <input type="radio" name="size" value="xl" class="sr-only peer" />
-          <span
-            class="block px-4 py-2 border border-text/20 rounded cursor-pointer peer-checked:border-link peer-checked:text-link hover:border-text/40"
-            >XL</span
-          >
-        </label>
-      </div>
-    </fieldset>
-  </div>
-
-  <button
-    type="button"
-    disabled
-    class="mt-6 w-full py-3 bg-link text-primary rounded-md cursor-pointer hover:bg-link-hover transition-colors disabled:bg-link/50 disabled:cursor-not-allowed disabled:hover:bg-link/50 lg:col-span-2 lg:mt-0"
-  >
-    Coming Soon...
-  </button>
 </section>
