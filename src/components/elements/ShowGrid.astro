@@ -15,7 +15,9 @@ const data = await response.json();
 const shows = data.data || [];
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto"
+>
   {
     shows.map((show: any) => (
       <ShowCard
