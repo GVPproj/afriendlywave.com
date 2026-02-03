@@ -5,6 +5,24 @@ interface Props {
   feedKey: string; // e.g. "/afriendlywave/show-name/"
 }
 const { name, imageUrl, feedKey } = Astro.props;
+
+// Fetch tags from Mixcloud API at build time
+interface MixcloudTag {
+  key: string;
+  url: string;
+  name: string;
+}
+
+let tags: MixcloudTag[] = [];
+try {
+  const response = await fetch(`https://api.mixcloud.com${feedKey}`);
+  if (response.ok) {
+    const data = await response.json();
+    tags = data.tags || [];
+  }
+} catch (e) {
+  // Silently fail - tags are optional
+}
 ---
 
 <button
@@ -32,4 +50,15 @@ const { name, imageUrl, feedKey } = Astro.props;
     </div>
   </div>
   <p class="mt-2 text-text text-lg truncate">{name}</p>
+  {
+    tags.length > 0 && (
+      <div class="mt-1 flex flex-wrap gap-1">
+        {tags.map((tag) => (
+          <span class="text-xs px-2 pt-1 rounded-full bg-text/10 text-text/70">
+            {tag.name}
+          </span>
+        ))}
+      </div>
+    )
+  }
 </button>
