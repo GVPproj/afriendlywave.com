@@ -53,7 +53,7 @@ try {
   {
     tags.length > 0 && (
       <div class="mt-1 flex flex-wrap gap-1">
-        {tags.map((tag) => (
+        {tags.slice(0, 3).map((tag) => (
           <span class="text-xs px-2 pt-1 rounded-full bg-text/10 text-text/70">
             {tag.name}
           </span>
