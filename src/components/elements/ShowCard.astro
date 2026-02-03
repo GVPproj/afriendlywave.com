@@ -10,15 +10,26 @@ const { name, imageUrl, feedKey } = Astro.props;
 <button
   type="button"
   data-feed={feedKey}
-  class="show-card block max-w-96 text-left cursor-pointer border border-text/20 rounded-md p-3"
+  class="group show-card block max-w-96 text-left cursor-pointer border border-text/20 rounded-md p-3"
 >
-  <div class="aspect-square overflow-hidden rounded">
+  <div class="aspect-square overflow-hidden rounded relative">
     <img
       src={imageUrl}
       alt={name}
-      class="w-full h-full object-cover"
+      class="w-full h-full object-cover transition-opacity group-hover:opacity-80"
       loading="lazy"
     />
+    <div
+      class="absolute bottom-4 left-4 w-12 h-12 bg-primary group-hover:bg-link transition-colors rounded-full flex items-center justify-center"
+    >
+      <svg
+        class="w-7 h-7 text-text ml-0.5"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </div>
   </div>
   <p class="mt-2 text-text text-lg truncate">{name}</p>
 </button>
