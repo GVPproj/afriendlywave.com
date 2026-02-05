@@ -1,6 +1,5 @@
 ---
 import Logo from "../../assets/logo.svg";
-import GroundwavesLogo from "../../assets/groundwaves-logo.svg";
 import Instagram from "../../assets/instagram.svg";
 import Mixcloud from "../../assets/mixcloud.svg";
 ---
@@ -13,32 +12,35 @@ import Mixcloud from "../../assets/mixcloud.svg";
       <Logo class="text-link w-8" />
     </a>
 
-    <div class="flex items-center gap-4">
-      <a
-        href="/about"
-        class="text-link hover:text-link-hover mt-1 tracking-wide uppercase"
-        >About</a
-      >
+    <div class="flex items-baseline gap-4">
       <a
         href="https://instagram.com/a.friendly.wave"
         target="_blank"
         rel="noopener noreferrer"
+        class="-translate-y-0.5 self-center"
       >
-        <Instagram class="text-link hover:text-link-hover h-6 w-6" />
+        <Instagram class="text-link hover:text-link-hover h-5 w-5" />
       </a>
       <a
         href="https://mixcloud.com/afriendlywave"
         target="_blank"
         rel="noopener noreferrer"
+        class="-translate-y-0.5 self-center"
       >
-        <Mixcloud class="text-link hover:text-link-hover h-6 w-6" />
+        <Mixcloud class="text-link hover:text-link-hover h-5 w-5" />
       </a>
+      <a
+        href="/about"
+        class="text-link hover:text-link-hover tracking-wide uppercase">About</a
+      >
       <a
         href="https://groundwaves.live"
         target="_blank"
         rel="noopener noreferrer"
+        class="text-link hover:text-link-hover leading-none font-bold"
+        style="font-family: 'Fraunces', serif;"
       >
-        <GroundwavesLogo class="text-link hover:text-link-hover h-6" />
+        groundwaves
       </a>
     </div>
   </div>
