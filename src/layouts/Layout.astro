@@ -1,7 +1,14 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import Header from "../components/elements/Header.astro";
 import MixcloudPlayer from "../components/elements/MixcloudPlayer.astro";
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "A Friendly Wave" } = Astro.props;
 ---
 
 <!doctype html>
@@ -11,8 +18,15 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <meta name="generator" content={Astro.generator} />
-    <title>A Friendly Wave</title>
+    <title>{title}</title>
+    <ClientRouter />
     <meta
       name="description"
       content="A unique cultural experiment celebrating Salt Spring Island's creative spirit. Experience music together at our Salt Spring listening space."

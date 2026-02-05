@@ -24,46 +24,42 @@ const params = new URLSearchParams({
 const iframeSrc = `https://www.mixcloud.com/widget/iframe/?${params.toString()}`;
 ---
 
-<div class="mixcloud-player">
-  <iframe
-    id="mixcloud-player"
-    src={iframeSrc}
-    allow="autoplay"
-    loading="lazy"
-  ></iframe>
-</div>
+<template id="mixcloud-data" data-src={iframeSrc}></template>
 
-<style>
-  .mixcloud-player {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 60px;
-    z-index: 50;
-  }
+<script is:inline>
+  (function () {
+    if (document.getElementById('mixcloud-player-container')) return;
 
-  .mixcloud-player iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-</style>
+    var src = document.getElementById('mixcloud-data')?.getAttribute('data-src');
+    if (!src) return;
 
-<script>
-  window.addEventListener('mixcloud:play', (e: CustomEvent) => {
-    const iframe = document.getElementById(
-      'mixcloud-player'
-    ) as HTMLIFrameElement;
-    if (iframe && e.detail?.feed) {
-      const params = new URLSearchParams({
-        feed: e.detail.feed,
-        hide_cover: '1',
-        mini: '1',
-        autoplay: '1',
-      });
-      iframe.src = `https://www.mixcloud.com/widget/iframe/?${params}`;
-    }
-  });
+    var container = document.createElement('div');
+    container.id = 'mixcloud-player-container';
+    container.style.cssText =
+      'position:fixed;bottom:0;left:0;right:0;width:100%;height:60px;z-index:50;';
+
+    var iframe = document.createElement('iframe');
+    iframe.id = 'mixcloud-player';
+    iframe.src = src;
+    iframe.allow = 'autoplay';
+    iframe.loading = 'lazy';
+    iframe.style.cssText = 'width:100%;height:100%;border:none;';
+
+    container.appendChild(iframe);
+    document.documentElement.appendChild(container);
+
+    window.addEventListener('mixcloud:play', function (e) {
+      var detail = e.detail;
+      if (iframe && detail && detail.feed) {
+        var params = new URLSearchParams({
+          feed: detail.feed,
+          hide_cover: '1',
+          mini: '1',
+          autoplay: '1',
+        });
+        iframe.src =
+          'https://www.mixcloud.com/widget/iframe/?' + params.toString();
+      }
+    });
+  })();
 </script>
