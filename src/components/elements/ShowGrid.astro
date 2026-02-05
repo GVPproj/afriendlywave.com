@@ -31,14 +31,14 @@ const shows = (data.data || []).slice(offset);
 </div>
 
 <script>
-  document.querySelectorAll(".show-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      const feed = card.getAttribute("data-feed");
-      if (feed) {
-        window.dispatchEvent(
-          new CustomEvent("mixcloud:play", { detail: { feed } }),
-        );
-      }
-    });
+  document.addEventListener("click", (e) => {
+    const card = (e.target as Element)?.closest(".show-card");
+    if (!card) return;
+    const feed = card.getAttribute("data-feed");
+    if (feed) {
+      window.dispatchEvent(
+        new CustomEvent("mixcloud:play", { detail: { feed } }),
+      );
+    }
   });
 </script>
