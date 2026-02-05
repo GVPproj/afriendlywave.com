@@ -1,14 +1,78 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Banner from "../components/elements/Banner.astro";
 ---
 
 <Layout title="About - A Friendly Wave">
-	<main class="mx-auto max-w-screen-md px-6 py-16">
-		<p class="text-center">
-			Join us for this unique cultural experiment that celebrates Salt Spring Island's creative spirit while introducing new perspectives on how we experience music together. Whether you're an audiophile, a casual listener, or simply curious about mindful cultural experiences, the Salt Spring Listening Space offers something transformative.
-		</p>
-		<p class="mt-6 text-center">
-			Limited capacity ensures an intimate experience. Stay tuned for ticketing information and updates.
-		</p>
-	</main>
+  <main class="mx-auto flex max-w-5xl flex-col gap-16 px-6 pt-24 pb-48">
+    <Banner />
+    <p>
+      Join us for this unique cultural experiment that celebrates Salt Spring
+      Island's creative spirit while introducing new perspectives on how we
+      experience music together. Whether you're an audiophile, a casual
+      listener, or simply curious about mindful cultural experiences, the Salt
+      Spring Listening Space offers something transformative.
+    </p>
+
+    <h2 class="text-center text-2xl">Four Unique Listening Experiences</h2>
+
+    <div class="grid gap-4 lg:grid-cols-2">
+      <div class="border-text/20 rounded-md border p-6">
+        <h3 class="text-text text-xl">
+          Café Mode <span class="text-text/60">| Daytime Hours</span>
+        </h3>
+        <p class="text-text/70 mt-2">
+          Throughout the day, our space offers thoughtfully curated ambient
+          soundscapes perfect for conversation, work, or quiet reflection.
+          Quality sound becomes a subtle enhancement to daily island life.
+        </p>
+      </div>
+
+      <div class="border-text/20 rounded-md border p-6">
+        <h3 class="text-text text-xl">
+          Community Curation <span class="text-text/60">| 4:00-6:30 PM</span>
+        </h3>
+        <p class="text-text/70 mt-2">
+          Early evenings transform into platforms for local collectors and
+          musical storytellers. Experience Salt Spring's diverse musical culture
+          as community members share their collections and personal journeys
+          through sound. Each curator brings their unique perspective, creating
+          intimate connections between music and memory.
+        </p>
+      </div>
+
+      <div class="border-text/20 rounded-md border p-6">
+        <h3 class="text-text text-xl">
+          Dark Mode <span class="text-text/60">| 7:00 PM - 12:00 AM</span>
+        </h3>
+        <p class="text-text/70 mt-2">
+          As night falls, the space evolves into a sophisticated listening
+          environment. Guest selectors and renowned DJs guide sonic journeys
+          that balance deep listening with movement. This isn't loud, generic
+          nightlife—it's an immersive, quality-focused musical experience
+          featuring high-fidelity sound and carefully curated sets.
+        </p>
+      </div>
+
+      <div class="border-text/20 rounded-md border p-6">
+        <h3 class="text-text text-xl">
+          Deep Listening Sessions <span class="text-text/60"
+            >| Sundays, 1:30-3:00 PM</span
+          >
+        </h3>
+        <p class="text-text/70 mt-2">
+          Dedicated sessions where complete albums are experienced without
+          interruption. In our age of shuffled playlists and fragmented
+          attention, rediscover the meditative power of hearing a musical work
+          in its entirety, surrounded by fellow listeners in shared
+          contemplation.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Limited capacity ensures an intimate experience. Stay tuned for ticketing
+      information and updates.
+    </p>
+  </main>
 </Layout>

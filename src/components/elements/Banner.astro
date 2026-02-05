@@ -1,0 +1,13 @@
+---
+import BannerSvg from "../../assets/banner.svg";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["w-full", className]}>
+  <BannerSvg class="h-auto w-full fill-current" />
+</div>
