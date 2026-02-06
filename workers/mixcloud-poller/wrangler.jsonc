@@ -1,0 +1,20 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "mixcloud-poller",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-02-02",
+  "compatibility_flags": ["nodejs_compat"],
+  "triggers": {
+    "crons": ["*/30 * * * *"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "POLLER_KV",
+      "id": "f67df0c084e0406cb234537fbda6c84c",
+      "preview_id": "1d83c74657c540c0a46f544dbe6580ba"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
