@@ -11,6 +11,16 @@ import daySetup from "../assets/photos/molly_beaton/daySetup.jpg";
     style="grid-template-columns: 1fr min(64rem, calc(100% - 3rem)) 1fr;"
   >
     <Banner />
+    <figure style="grid-column: 1 / -1;">
+      <Image
+        src={daySetup}
+        alt="Day setup at A Friendly Wave listening space"
+        class="w-full object-cover"
+      />
+      <figcaption class="text-text/50 mt-2 pr-4 text-right text-sm">
+        Photo: Molly Beaton
+      </figcaption>
+    </figure>
 
     <p>
       A Friendly Wave is a volunteer-run music space and radio initiative based
@@ -33,16 +43,6 @@ import daySetup from "../assets/photos/molly_beaton/daySetup.jpg";
         >A Friendly Wave</span
       > offers something welcoming and transformative.
     </p>
-    <figure style="grid-column: 1 / -1;">
-      <Image
-        src={daySetup}
-        alt="Day setup at A Friendly Wave listening space"
-        class="w-full object-cover"
-      />
-      <figcaption class="text-text/50 mt-2 pr-4 text-right text-sm">
-        Photo: Molly Beaton
-      </figcaption>
-    </figure>
     <h2 class="text-center text-2xl">Four Unique Listening Experiences</h2>
 
     <div class="grid gap-4 lg:grid-cols-2">
