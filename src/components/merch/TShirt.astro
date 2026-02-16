@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import tshirtImage from "../../assets/AFW_002_S02_1.2.png";
+import tshirtFront from "../../assets/merch/feb2026Tee/front.JPG";
+import tshirtBack from "../../assets/merch/feb2026Tee/back.JPG";
 ---
 
 <section class="border-text/20 w-full rounded-md border p-6 lg:flex-1">
@@ -8,12 +9,17 @@ import tshirtImage from "../../assets/AFW_002_S02_1.2.png";
     class="mx-auto max-w-125 lg:grid lg:grid-cols-[auto_1fr] lg:grid-rows-[1fr_auto] lg:gap-x-8 lg:gap-y-6"
   >
     <div
-      class="mx-auto aspect-4/5 max-w-xs overflow-hidden rounded-md lg:mx-0 lg:w-64"
+      class="tshirt-crossfade relative mx-auto aspect-square max-w-xs overflow-hidden rounded-md lg:mx-0 lg:w-64"
     >
       <Image
-        src={tshirtImage}
-        alt="A Friendly Wave T-Shirt"
-        class="h-full w-full object-cover"
+        src={tshirtFront}
+        alt="A Friendly Wave T-Shirt - Front"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <Image
+        src={tshirtBack}
+        alt="A Friendly Wave T-Shirt - Back"
+        class="absolute inset-0 h-full w-full object-cover"
       />
     </div>
 
@@ -21,53 +27,35 @@ import tshirtImage from "../../assets/AFW_002_S02_1.2.png";
       <h2 class="text-text mt-4 text-lg lg:mt-0">T-Shirt Pre-Order</h2>
       <p class="text-text/60 text-sm">(Local Pickup Only)</p>
 
-      <fieldset class="mt-4">
-        <legend class="sr-only">Select size</legend>
-        <div class="flex gap-2">
-          <label class="size-option">
-            <input type="radio" name="size" value="sm" class="peer sr-only" />
-            <span
-              class="border-text/20 peer-checked:border-link peer-checked:text-link hover:border-text/40 block cursor-pointer rounded border px-4 py-2"
-              >SM</span
-            >
-          </label>
-          <label class="size-option">
-            <input
-              type="radio"
-              name="size"
-              value="md"
-              class="peer sr-only"
-              checked
-            />
-            <span
-              class="border-text/20 peer-checked:border-link peer-checked:text-link hover:border-text/40 block cursor-pointer rounded border px-4 py-2"
-              >MD</span
-            >
-          </label>
-          <label class="size-option">
-            <input type="radio" name="size" value="lg" class="peer sr-only" />
-            <span
-              class="border-text/20 peer-checked:border-link peer-checked:text-link hover:border-text/40 block cursor-pointer rounded border px-4 py-2"
-              >LG</span
-            >
-          </label>
-          <label class="size-option">
-            <input type="radio" name="size" value="xl" class="peer sr-only" />
-            <span
-              class="border-text/20 peer-checked:border-link peer-checked:text-link hover:border-text/40 block cursor-pointer rounded border px-4 py-2"
-              >XL</span
-            >
-          </label>
-        </div>
-      </fieldset>
     </div>
 
-    <button
-      type="button"
-      disabled
-      class="bg-link text-primary hover:bg-link-hover disabled:bg-link/50 disabled:hover:bg-link/50 mt-6 w-full cursor-pointer rounded-md py-3 transition-colors disabled:cursor-not-allowed lg:col-span-2 lg:mt-0"
+    <a
+      href="https://square.link/u/YoZExmLL"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bg-link text-primary! no-underline hover:bg-link-hover mt-6 block w-full cursor-pointer rounded-md py-3 text-center transition-colors lg:col-span-2 lg:mt-0"
     >
-      Coming Soon...
-    </button>
+      Pre-Order
+    </a>
   </div>
 </section>
+
+<style>
+  .tshirt-crossfade img:last-child {
+    animation: crossfade 4s ease-in-out infinite;
+  }
+
+  @keyframes crossfade {
+    0%,
+    40% {
+      opacity: 1;
+    }
+    50%,
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
