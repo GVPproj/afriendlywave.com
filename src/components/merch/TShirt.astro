@@ -1,15 +1,15 @@
 ---
 import { Image } from "astro:assets";
-import tshirtFront from "../../assets/merch/feb2026Tee/front.JPG";
-import tshirtBack from "../../assets/merch/feb2026Tee/back.JPG";
+import tshirtFront from "../../assets/merch/feb2026Tee/front.jpg";
+import tshirtBack from "../../assets/merch/feb2026Tee/back.jpg";
 ---
 
 <section class="border-text/20 w-full rounded-md border p-6 lg:flex-1">
   <div
-    class="mx-auto max-w-125 lg:grid lg:grid-cols-[auto_1fr] lg:grid-rows-[1fr_auto] lg:gap-x-8 lg:gap-y-6"
+    class="mx-auto max-w-125 lg:grid lg:h-full lg:grid-cols-[auto_1fr] lg:grid-rows-[1fr_auto] lg:gap-x-8 lg:gap-y-6"
   >
     <div
-      class="tshirt-crossfade relative mx-auto aspect-square max-w-xs overflow-hidden rounded-md lg:mx-0 lg:w-64"
+      class="tshirt-crossfade relative mx-auto aspect-square max-w-xs overflow-hidden rounded-md lg:mx-0 lg:w-76"
     >
       <Image
         src={tshirtFront}
@@ -26,14 +26,13 @@ import tshirtBack from "../../assets/merch/feb2026Tee/back.JPG";
     <div>
       <h2 class="text-text mt-4 text-lg lg:mt-0">T-Shirt Pre-Order</h2>
       <p class="text-text/60 text-sm">(Local Pickup Only)</p>
-
     </div>
 
     <a
       href="https://square.link/u/YoZExmLL"
       target="_blank"
       rel="noopener noreferrer"
-      class="bg-link text-primary! no-underline hover:bg-link-hover mt-6 block w-full cursor-pointer rounded-md py-3 text-center transition-colors lg:col-span-2 lg:mt-0"
+      class="bg-link text-primary! hover:bg-link-hover mt-6 block w-full cursor-pointer rounded-md py-3 text-center no-underline transition-colors lg:col-span-2 lg:mt-0"
     >
       Pre-Order
     </a>

@@ -28,22 +28,22 @@ try {
 <button
   type="button"
   data-feed={feedKey}
-  class="group show-card block max-w-96 text-left cursor-pointer border border-text/20 rounded-md p-3"
+  class="group show-card border-text/20 block cursor-pointer rounded-md border p-3 text-left md:max-w-96"
 >
-  <div class="aspect-square overflow-hidden rounded relative">
+  <div class="relative aspect-square overflow-hidden rounded">
     <img
       src={imageUrl}
       alt={name}
-      class="w-full h-full object-cover transition-opacity group-hover:opacity-80"
+      class="h-full w-full object-cover transition-opacity group-hover:opacity-80"
       loading="lazy"
       width="600"
       height="600"
     />
     <div
-      class="absolute bottom-4 left-4 w-12 h-12 bg-primary group-hover:bg-link transition-colors rounded-full flex items-center justify-center"
+      class="bg-primary group-hover:bg-link absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-full transition-colors"
     >
       <svg
-        class="w-7 h-7 text-text ml-0.5"
+        class="text-text ml-0.5 h-7 w-7"
         viewBox="0 0 24 24"
         fill="currentColor"
       >
@@ -51,12 +51,12 @@ try {
       </svg>
     </div>
   </div>
-  <p class="mt-2 text-text text-lg truncate">{name}</p>
+  <p class="text-text mt-2 truncate text-lg">{name}</p>
   {
     tags.length > 0 && (
       <div class="mt-1 flex flex-wrap gap-1">
         {tags.slice(0, 3).map((tag) => (
-          <span class="text-xs px-2 pt-1 rounded-full bg-text/10 text-text/70">
+          <span class="bg-text/10 text-text/70 rounded-full px-2 pt-1 text-xs">
             {tag.name}
           </span>
         ))}
