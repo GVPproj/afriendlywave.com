@@ -1,154 +1,166 @@
 ---
 import dude from "../../assets/dude/AFW_Dude_5.0_F0F0EB.png";
+import type { ScheduleData } from "../../data/march2026schedule";
+import Banner from "../elements/Banner.astro";
+
+interface Props {
+  schedule: ScheduleData;
+}
+
+const { schedule } = Astro.props;
 ---
 
-<!-- March schedule: stacked layout on mobile, table on large -->
 <section class="border-text/20 text-text rounded-md border p-6">
-  <h1 class="mx-auto mb-6 text-center text-2xl sm:text-4xl">
-    A Friendly Wave<br />March 2026
+  <div class="mx-auto w-4/5 md:w-1/2">
+    <Banner />
+  </div>
+  <h1 class="mx-auto my-6 text-center text-2xl sm:text-4xl">
+    {schedule.month}
   </h1>
   <img src={dude.src} alt="" class="mx-auto mb-6 w-1/3 md:w-1/8" />
   <!-- Mobile layout -->
   <div class="flex flex-col gap-6 lg:hidden">
-    <!-- FRIDAY -->
-    <div class="border-text/30 border-b pb-6">
-      <div class="mb-3 font-bold">FRI MARCH 6</div>
-      <div class="mb-1 font-bold">COMMUNITY CURATION</div>
-      <div class="flex gap-3">
-        <span class="shrink-0">5:30pm</span>
-        <span>DJ Flip presents: My Jazz and R&B journey from age 0–7</span>
-      </div>
-    </div>
-    <!-- SATURDAY -->
-    <div class="border-text/30 border-b pb-6">
-      <div class="mb-3 font-bold">SAT MARCH 7</div>
-      <div class="mb-1 font-bold">CAFÉ MODE</div>
-      <div class="flex gap-3">
-        <span class="shrink-0">10:00am</span>
-        <span>Bo Meets World</span>
-      </div>
-      <div class="mb-4 flex gap-3">
-        <span class="shrink-0">11:30am</span>
-        <span>Connie Kuhns</span>
-      </div>
-      <div class="mb-1 font-bold">COMMUNITY CURATION</div>
-      <div class="mb-4 flex gap-3">
-        <span class="shrink-0">4:00pm</span>
-        <span
-          >Jamie Wollen presents: Music that takes you somewhere, with a number
-          of stops being in Africa</span
+    {
+      schedule.days.map((day, dayIdx) => (
+        <div
+          class={
+            dayIdx < schedule.days.length - 1
+              ? "border-text/30 border-b pb-6"
+              : ""
+          }
         >
-      </div>
-      <div class="mb-1">
-        <span class="font-bold">DARK MODE</span>
-        <span class="ml-2 text-sm">* $20 advance/door</span>
-      </div>
-      <div class="flex gap-3">
-        <span class="shrink-0">*7:00pm–late</span>
-        <span>DJ D.DEE w/ Graham Van Pelt</span>
-      </div>
-    </div>
-    <!-- SUNDAY -->
-    <div>
-      <div class="mb-3 font-bold">SUN MARCH 8</div>
-      <div class="mb-1 font-bold">CAFÉ MODE</div>
-      <div class="flex gap-3">
-        <span class="shrink-0">10:00am</span>
-        <span>Jeff Stefani</span>
-      </div>
-      <div class="mb-4 flex gap-3">
-        <span class="shrink-0">11:30am</span>
-        <span>Leo Chan</span>
-      </div>
-      <div class="mb-1">
-        <span class="font-bold">DEEP LISTENING</span>
-        <span class="ml-2 text-sm">* no entry after 3pm</span>
-      </div>
-      <div class="flex gap-3">
-        <span class="shrink-0">*Doors: 2:30pm</span>
-        <span
-          >Robert Kraft presents: "Light as a Feather" Chick Corea and Return to
-          Forever</span
-        >
-      </div>
-    </div>
+          <div class="mb-3 font-bold">{day.label}</div>
+          {day.sections.map((section, secIdx) => {
+            const content = (
+              <>
+                <div class="mb-1">
+                  <span class="font-bold">{section.mode}</span>
+                  {section.note && (
+                    <span class="ml-2 text-sm">{section.note}</span>
+                  )}
+                </div>
+                {section.slots.map((slot, slotIdx) => (
+                  <div
+                    class={`flex gap-3${slotIdx === section.slots.length - 1 && secIdx < day.sections.length - 1 ? " mb-4" : ""}`}
+                  >
+                    <span class="shrink-0">{slot.time}</span>
+                    <span>{slot.description}</span>
+                  </div>
+                ))}
+              </>
+            );
+            return section.link ? (
+              <a
+                href={section.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-orange hover:text-yellow"
+              >
+                {content}
+              </a>
+            ) : (
+              <div>{content}</div>
+            );
+          })}
+        </div>
+      ))
+    }
   </div>
-  <table class="text-text mx-auto hidden border-collapse lg:table">
-    <!-- FRIDAY -->
-    <tbody>
-      <tr class="border-text/30 border-b align-top">
-        <td class="py-5 pr-20 font-bold" rowspan="1">
-          FRI<br />MARCH<br />6
-        </td>
-        <td class="px-20 py-5 font-bold">COMMUNITY CURATION</td>
-        <td class="px-20 py-5 text-right">5:30pm</td>
-        <td class="py-5">
-          DJ Flip presents:<br />My Jazz and R&B journey<br />from age 0–7
-        </td>
-      </tr>
-    </tbody>
-    <!-- SATURDAY -->
-    <tbody>
-      <tr class="border-text/30 align-top">
-        <td class="pt-5 pr-20 font-bold" rowspan="3">
-          SAT<br />MARCH<br />7
-        </td>
-        <td class="px-20 pt-5 font-bold">CAFÉ MODE</td>
-        <td class="px-20 pt-5 text-right">
-          10:00am<br />11:30am
-        </td>
-        <td class="pt-5">
-          Bo Meets World<br />Connie Kuhns
-        </td>
-      </tr>
-      <tr class="align-top">
-        <td class="px-20 pt-6 font-bold">COMMUNITY CURATION</td>
-        <td class="px-20 pt-6 text-right">4:00pm</td>
-        <td class="pt-6">
-          Jamie Wollen presents:<br />Music that takes you<br />somewhere, with
-          a number<br />of stops being in Africa
-        </td>
-      </tr>
-      <tr class="border-text/30 border-b align-top">
-        <td class="px-20 pt-6 pb-5">
-          <span class="font-bold">DARK MODE</span><br />
-          <span class="text-sm">* $20 advance/door</span>
-        </td>
-        <td class="px-20 pt-6 pb-5 text-right">
-          *7:00pm<br />–late
-        </td>
-        <td class="pt-6 pb-5">
-          DJ D.DEE w/<br />Graham Van Pelt
-        </td>
-      </tr>
-    </tbody>
-    <!-- SUNDAY -->
-    <tbody>
-      <tr class="border-text/30 border-t align-top">
-        <td class="pt-5 pr-20 font-bold" rowspan="2">
-          SUN<br />MARCH<br />8
-        </td>
-        <td class="px-20 pt-5 font-bold">CAFÉ MODE</td>
-        <td class="px-20 pt-5 text-right">
-          10:00am<br />11:30am
-        </td>
-        <td class="pt-5">
-          Jeff Stefani<br />Leo Chan
-        </td>
-      </tr>
-      <tr class="border-text/30 align-top">
-        <td class="px-20 pt-6 pb-5">
-          <span class="font-bold">DEEP LISTENING</span><br />
-          <span class="text-sm">* no entry after 3pm</span>
-        </td>
-        <td class="px-20 pt-6 pb-5 text-right">
-          *Doors:<br />2:30pm
-        </td>
-        <td class="pt-6 pb-5">
-          Robert Kraft presents:<br />"Light as a Feather"<br />Chick Corea and
-          Return<br />to Forever
-        </td>
-      </tr>
-    </tbody>
+  <!-- Desktop table -->
+  <table class="text-text mx-auto hidden max-w-300 border-collapse lg:table">
+    {
+      schedule.days.map((day, dayIdx) => (
+        <tbody>
+          {day.sections.map((section, secIdx) => {
+            const isFirstSection = secIdx === 0;
+            const isLastSection = secIdx === day.sections.length - 1;
+            const isLastDay = dayIdx === schedule.days.length - 1;
+            const borderClass =
+              isLastSection && !isLastDay ? "border-text/30 border-b" : "";
+            const topBorderClass =
+              isFirstSection && dayIdx > 0 ? "border-text/30 border-t" : "";
+
+            const ptClass = isFirstSection ? "pt-5" : "pt-6";
+            const pbClass =
+              isLastSection && !isLastDay ? "pb-5" : "";
+
+            const wrap = (children: any, classes: string) =>
+              section.link ? (
+                <a
+                  href={section.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={`block ${classes} text-orange group-hover:text-yellow`}
+                >
+                  {children}
+                </a>
+              ) : (
+                children
+              );
+
+            return (
+              <tr
+                class={`align-top ${borderClass} ${topBorderClass} ${section.link ? "group cursor-pointer" : ""}`}
+              >
+                {isFirstSection && (
+                  <td
+                    class="pt-5 pr-20 font-bold"
+                    rowspan={day.sections.length}
+                  >
+                    {day.shortLabel.day}
+                    <br />
+                    {day.shortLabel.month}
+                    <br />
+                    {day.shortLabel.date}
+                  </td>
+                )}
+                <td
+                  class={section.link ? "" : `px-20 ${ptClass} ${pbClass} ${section.note ? "" : "font-bold"}`}
+                >
+                  {wrap(
+                    section.note ? (
+                      <>
+                        <span class="font-bold">{section.mode}</span>
+                        <br />
+                        <span class="text-sm">{section.note}</span>
+                      </>
+                    ) : (
+                      section.mode
+                    ),
+                    `px-20 ${ptClass} ${pbClass} ${section.note ? "" : "font-bold"}`,
+                  )}
+                </td>
+                <td
+                  class={section.link ? "" : `px-20 ${ptClass} ${pbClass} text-right`}
+                >
+                  {wrap(
+                    section.slots.map((slot, i) => (
+                      <>
+                        {i > 0 && <br />}
+                        {slot.time}
+                      </>
+                    )),
+                    `px-20 ${ptClass} ${pbClass} text-right`,
+                  )}
+                </td>
+                <td
+                  class={section.link ? "" : `${ptClass} ${pbClass}`}
+                >
+                  {wrap(
+                    section.slots.map((slot, i) => (
+                      <>
+                        {i > 0 && <br />}
+                        {slot.description}
+                      </>
+                    )),
+                    `${ptClass} ${pbClass}`,
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      ))
+    }
   </table>
 </section>

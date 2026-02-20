@@ -4,6 +4,7 @@ import ShowGrid from "./mixcloud/ShowGrid.astro";
 import ShowCard from "./mixcloud/ShowCard.astro";
 import TShirt from "./merch/TShirt.astro";
 import Schedule from "./schedules/Schedule.astro";
+import { march2026 } from "../data/march2026schedule";
 import febScheduleImage from "../assets/schedules/AFW_SundaySessions_FEB2026_SM_Launch2.jpg";
 
 // Fetch newest show for featured display
@@ -29,7 +30,7 @@ const newestShow = data.data?.[0];
     }
     <TShirt />
   </div>
-  <Schedule />
+  <Schedule schedule={march2026} />
   <section class="border-text/20 rounded-md border p-6">
     <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
       <h2
