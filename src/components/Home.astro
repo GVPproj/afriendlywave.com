@@ -3,7 +3,8 @@ import { Image } from "astro:assets";
 import ShowGrid from "./mixcloud/ShowGrid.astro";
 import ShowCard from "./mixcloud/ShowCard.astro";
 import TShirt from "./merch/TShirt.astro";
-import scheduleImage from "../assets/schedules/AFW_SundaySessions_FEB2026_SM_Launch2.jpg";
+import scheduleImage from "../assets/schedules/marchafw.jpeg";
+import febScheduleImage from "../assets/schedules/AFW_SundaySessions_FEB2026_SM_Launch2.jpg";
 
 // Fetch newest show for featured display
 const response = await fetch(
@@ -29,6 +30,13 @@ const newestShow = data.data?.[0];
     <TShirt />
   </div>
   <section class="border-text/20 rounded-md border p-6">
+    <Image
+      src={scheduleImage}
+      alt="A Friendly Wave - March 2026 Schedule"
+      class="w-full rounded-md"
+    />
+  </section>
+  <section class="border-text/20 rounded-md border p-6">
     <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
       <h2
         class="text-text text-center text-2xl font-bold lg:w-1/2 lg:text-left"
@@ -41,7 +49,7 @@ const newestShow = data.data?.[0];
         >!
       </h2>
       <Image
-        src={scheduleImage}
+        src={febScheduleImage}
         alt="A Friendly Wave Sunday Sessions - February 2026 Schedule"
         class="w-full lg:w-1/2"
       />
