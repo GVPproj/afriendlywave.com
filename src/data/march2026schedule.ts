@@ -1,25 +1,6 @@
-export interface TimeSlot {
-  time: string;
-  description: string;
-}
+import type { ScheduleData } from "./scheduleTypes";
 
-export interface Section {
-  mode: string;
-  note?: string;
-  link?: string;
-  slots: TimeSlot[];
-}
-
-export interface Day {
-  label: string;
-  shortLabel: { day: string; month: string; date: string };
-  sections: Section[];
-}
-
-export interface ScheduleData {
-  month: string;
-  days: Day[];
-}
+export type { TimeSlot, Section, Day, ScheduleData } from "./scheduleTypes";
 
 export const march2026: ScheduleData = {
   month: "March 2026",
@@ -56,8 +37,7 @@ export const march2026: ScheduleData = {
           slots: [
             {
               time: "4:00pm",
-              description:
-                "Jamie Wollen presents: Music that takes you somewhere, with a number of stops being in Africa",
+              description: "Jamie Wollen presents...",
             },
           ],
         },

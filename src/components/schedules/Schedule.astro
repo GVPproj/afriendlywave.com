@@ -1,6 +1,6 @@
 ---
 import dude from "../../assets/dude/AFW_Dude_5.0_F0F0EB.png";
-import type { ScheduleData } from "../../data/march2026schedule";
+import type { ScheduleData } from "../../data/scheduleTypes";
 import Banner from "../elements/Banner.astro";
 
 interface Props {
@@ -54,7 +54,7 @@ const { schedule } = Astro.props;
                 href={section.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="block text-orange hover:text-yellow"
+                class="text-orange hover:text-yellow block"
               >
                 {content}
               </a>
@@ -67,7 +67,7 @@ const { schedule } = Astro.props;
     }
   </div>
   <!-- Desktop table -->
-  <table class="text-text mx-auto hidden max-w-300 border-collapse lg:table">
+  <table class="text-text mx-auto hidden max-w-7xl border-collapse lg:table">
     {
       schedule.days.map((day, dayIdx) => (
         <tbody>
@@ -81,8 +81,7 @@ const { schedule } = Astro.props;
               isFirstSection && dayIdx > 0 ? "border-text/30 border-t" : "";
 
             const ptClass = isFirstSection ? "pt-5" : "pt-6";
-            const pbClass =
-              isLastSection && !isLastDay ? "pb-5" : "";
+            const pbClass = isLastSection && !isLastDay ? "pb-5" : "";
 
             const wrap = (children: any, classes: string) =>
               section.link ? (
@@ -115,7 +114,11 @@ const { schedule } = Astro.props;
                   </td>
                 )}
                 <td
-                  class={section.link ? "" : `px-20 ${ptClass} ${pbClass} ${section.note ? "" : "font-bold"}`}
+                  class={
+                    section.link
+                      ? ""
+                      : `px-20 ${ptClass} ${pbClass} ${section.note ? "" : "font-bold"}`
+                  }
                 >
                   {wrap(
                     section.note ? (
@@ -131,7 +134,9 @@ const { schedule } = Astro.props;
                   )}
                 </td>
                 <td
-                  class={section.link ? "" : `px-20 ${ptClass} ${pbClass} text-right`}
+                  class={
+                    section.link ? "" : `px-20 ${ptClass} ${pbClass} text-right`
+                  }
                 >
                   {wrap(
                     section.slots.map((slot, i) => (
@@ -143,9 +148,7 @@ const { schedule } = Astro.props;
                     `px-20 ${ptClass} ${pbClass} text-right`,
                   )}
                 </td>
-                <td
-                  class={section.link ? "" : `${ptClass} ${pbClass}`}
-                >
+                <td class={section.link ? "" : `${ptClass} ${pbClass}`}>
                   {wrap(
                     section.slots.map((slot, i) => (
                       <>
