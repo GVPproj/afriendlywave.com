@@ -29,12 +29,91 @@ const newestShow = data.data?.[0];
     }
     <TShirt />
   </div>
+  <!-- March schedule: image on small screens, HTML table on large -->
   <section class="border-text/20 rounded-md border p-6">
     <Image
       src={scheduleImage}
       alt="A Friendly Wave - March 2026 Schedule"
-      class="w-full rounded-md"
+      class="w-full rounded-md lg:hidden"
     />
+    <table class="text-text hidden w-full border-collapse lg:table">
+      <!-- FRIDAY -->
+      <tbody>
+        <tr class="border-text/30 border-b align-top">
+          <td class="w-28 py-5 pr-6 font-bold" rowspan="1">
+            FRI<br />MARCH<br />6
+          </td>
+          <td class="w-56 py-5 pr-6 font-bold">COMMUNITY CURATION</td>
+          <td class="w-32 py-5 pr-6 text-right">5:30pm</td>
+          <td class="py-5">
+            DJ Flip presents:<br />My Jazz and R&B journey<br />from age 0–7
+          </td>
+        </tr>
+      </tbody>
+      <!-- SATURDAY -->
+      <tbody>
+        <tr class="border-text/30 align-top">
+          <td class="w-28 pt-5 pr-6 font-bold" rowspan="3">
+            SAT<br />MARCH<br />7
+          </td>
+          <td class="w-56 pt-5 pr-6 font-bold">CAFÉ MODE</td>
+          <td class="w-32 pt-5 pr-6 text-right">
+            10:00am<br />11:30am
+          </td>
+          <td class="pt-5">
+            Bo Meets World<br />Connie Kuhns
+          </td>
+        </tr>
+        <tr class="align-top">
+          <td class="w-56 pt-6 pr-6 font-bold">COMMUNITY CURATION</td>
+          <td class="w-32 pt-6 pr-6 text-right">4:00pm</td>
+          <td class="pt-6">
+            Jamie Wollen presents:<br />Music that takes you<br />somewhere,
+            with a number<br />of stops being in Africa
+          </td>
+        </tr>
+        <tr class="border-text/30 border-b align-top">
+          <td class="w-56 pt-6 pr-6 pb-5">
+            <span class="font-bold">DARK MODE</span><br />
+            <span class="text-sm">* $20 advance/door</span>
+          </td>
+          <td class="w-32 pt-6 pr-6 pb-5 text-right">
+            *7:00pm<br />–late
+          </td>
+          <td class="pt-6 pb-5">
+            DJ D.DEE w/<br />Graham Van Pelt
+          </td>
+        </tr>
+      </tbody>
+      <!-- SUNDAY -->
+      <tbody>
+        <tr class="border-text/30 border-t align-top">
+          <td class="w-28 pt-5 pr-6 font-bold" rowspan="2">
+            SUN<br />MARCH<br />8
+          </td>
+          <td class="w-56 pt-5 pr-6 font-bold">CAFÉ MODE</td>
+          <td class="w-32 pt-5 pr-6 text-right">
+            10:00am<br />11:30am
+          </td>
+          <td class="pt-5">
+            Jeff Stefani<br />Leo Chan
+          </td>
+        </tr>
+        <tr class="border-text/30 align-top">
+          <td class="w-56 pt-6 pr-6 pb-5">
+            <span class="font-bold">DEEP LISTENING</span><br />
+            <span class="text-sm">* no entry after 3pm</span>
+          </td>
+          <td class="w-32 pt-6 pr-6 pb-5 text-right">
+            *Doors:<br />2:30pm
+          </td>
+          <td class="pt-6 pb-5">
+            Robert Kraft presents:<br />"Light as a Feather"<br />Chick Corea
+            and Return<br />to Forever
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
   <section class="border-text/20 rounded-md border p-6">
     <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
