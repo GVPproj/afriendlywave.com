@@ -59,6 +59,7 @@ const { schedule } = Astro.props;
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-orange hover:text-yellow block"
+                data-ticket-link
               >
                 {content}
               </a>
@@ -108,6 +109,7 @@ const { schedule } = Astro.props;
             return (
               <tr
                 class={`align-top ${borderClass} ${topBorderClass} ${section.link ? "group cursor-pointer" : ""}`}
+                {...(section.link ? { "data-ticket-link": "" } : {})}
               >
                 {isFirstSection && (
                   <td
@@ -161,4 +163,33 @@ const { schedule } = Astro.props;
       ))
     }
   </table>
+  <div
+    id="ticket-tooltip"
+    class="bg-text pointer-events-none fixed z-50 rounded px-2 py-1 text-lg text-primary opacity-0 transition-opacity duration-200"
+  >
+    Get Tickets
+  </div>
 </section>
+
+<script>
+  const tip = document.getElementById("ticket-tooltip")!;
+  document.querySelectorAll("[data-ticket-link]").forEach((el) => {
+    el.addEventListener("mousemove", (e: Event) => {
+      const { clientX, clientY } = e as MouseEvent;
+      tip.style.left = clientX + "px";
+      tip.style.top = clientY - tip.offsetHeight + "px";
+      tip.classList.remove("opacity-0");
+      tip.classList.add("opacity-100");
+    });
+    el.addEventListener("mouseleave", () => {
+      tip.classList.remove("opacity-100");
+      tip.classList.add("opacity-0");
+    });
+    el.addEventListener("click", (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a")) return;
+      const link = (e.currentTarget as HTMLElement).querySelector("a");
+      if (link) window.open(link.href, "_blank", "noopener,noreferrer");
+    });
+  });
+</script>
