@@ -15,7 +15,11 @@ const { schedule } = Astro.props;
     <Banner />
   </div>
   <h1 class="mx-auto my-6 text-center text-2xl sm:text-4xl">
-    {schedule.month}
+    {schedule.month} @ <a
+      href="https://www.cassettecafebar.com/"
+      target="_blank"
+      rel="noopener noreferrer">Cassette Cafe</a
+    >
   </h1>
   <img src={dude.src} alt="" class="mx-auto mb-6 w-1/3 md:w-1/8" />
   <!-- Mobile layout -->
