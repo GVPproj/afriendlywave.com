@@ -83,18 +83,22 @@ const { schedule } = Astro.props;
             const ptClass = isFirstSection ? "pt-5" : "pt-6";
             const pbClass = isLastSection && !isLastDay ? "pb-5" : "";
 
-            const wrap = (children: any, classes: string) =>
+            const modeClasses = `px-20 ${ptClass} ${pbClass} ${section.note ? "" : "font-bold"}`;
+            const timeClasses = `px-20 ${ptClass} ${pbClass} text-right`;
+            const descClasses = `${ptClass} ${pbClass}`;
+
+            const wrap = (content: astroHTML.JSX.Element) =>
               section.link ? (
                 <a
                   href={section.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class={`block ${classes} text-orange group-hover:text-yellow`}
+                  class="text-orange group-hover:text-yellow"
                 >
-                  {children}
+                  {content}
                 </a>
               ) : (
-                children
+                content
               );
 
             return (
@@ -113,13 +117,7 @@ const { schedule } = Astro.props;
                     {day.shortLabel.date}
                   </td>
                 )}
-                <td
-                  class={
-                    section.link
-                      ? ""
-                      : `px-20 ${ptClass} ${pbClass} ${section.note ? "" : "font-bold"}`
-                  }
-                >
+                <td class={modeClasses}>
                   {wrap(
                     section.note ? (
                       <>
@@ -130,14 +128,9 @@ const { schedule } = Astro.props;
                     ) : (
                       section.mode
                     ),
-                    `px-20 ${ptClass} ${pbClass} ${section.note ? "" : "font-bold"}`,
                   )}
                 </td>
-                <td
-                  class={
-                    section.link ? "" : `px-20 ${ptClass} ${pbClass} text-right`
-                  }
-                >
+                <td class={timeClasses}>
                   {wrap(
                     section.slots.map((slot, i) => (
                       <>
@@ -145,10 +138,9 @@ const { schedule } = Astro.props;
                         {slot.time}
                       </>
                     )),
-                    `px-20 ${ptClass} ${pbClass} text-right`,
                   )}
                 </td>
-                <td class={section.link ? "" : `${ptClass} ${pbClass}`}>
+                <td class={descClasses}>
                   {wrap(
                     section.slots.map((slot, i) => (
                       <>
@@ -156,7 +148,6 @@ const { schedule } = Astro.props;
                         {slot.description}
                       </>
                     )),
-                    `${ptClass} ${pbClass}`,
                   )}
                 </td>
               </tr>
