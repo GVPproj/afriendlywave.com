@@ -70,7 +70,7 @@ export const march2026: ScheduleData = {
           note: "* no entry after 3pm",
           slots: [
             {
-              time: "*Doors: 2:30pm",
+              time: "2:30pm",
               description:
                 'Robert Kraft presents: "Light as a Feather" Chick Corea and Return to Forever',
             },
