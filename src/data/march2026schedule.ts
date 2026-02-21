@@ -37,7 +37,7 @@ export const march2026: ScheduleData = {
           slots: [
             {
               time: "4:00pm",
-              description: "Jamie Wollen presents...",
+              description: "Jamie Wollen connects the dots on his musical path to becoming a professional drummer",
             },
           ],
         },
