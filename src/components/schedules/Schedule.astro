@@ -37,11 +37,9 @@ const { schedule } = Astro.props;
           {day.sections.map((section, secIdx) => {
             const content = (
               <>
-                <div class="mb-1">
+                <div class="mb-2 flex flex-col gap-1">
                   <span class="font-bold">{section.mode}</span>
-                  {section.note && (
-                    <span class="ml-2 text-sm">{section.note}</span>
-                  )}
+                  {section.note && <span class="text-sm">{section.note}</span>}
                 </div>
                 {section.slots.map((slot, slotIdx) => (
                   <div
