@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import ddeePoster from "../../assets/skins/DDee.jpeg";
+---
+
+<section class="border-text/20 w-full rounded-md border p-3 lg:flex-1">
+  <div class="mx-auto max-w-125 lg:flex lg:h-full lg:justify-center lg:gap-4">
+    <div
+      class="mx-auto overflow-hidden rounded-md bg-amber-50 lg:mx-0 lg:h-full lg:w-160"
+    >
+      <Image
+        src={ddeePoster}
+        alt="Dark Mode: DJ D.DEE w/ Graham Van Pelt - Saturday March 7"
+        class="h-full w-full object-cover"
+      />
+    </div>
+
+    <div class="flex flex-col lg:justify-between">
+      <div class="flex w-auto min-w-max flex-col lg:w-40">
+        <h2 class="text-text mt-4 text-lg lg:mt-0">Dark Mode:</h2>
+        <h2 class="text-text mt-4 text-lg lg:mt-0">DJ D.DEE</h2>
+        <p class="text-text/80 text-sm">w/ Graham Van Pelt</p>
+        <p class="text-text/60 mt-2 text-sm">Saturday March 7</p>
+        <p class="text-text/60 mt-2 text-sm">7:00pm–late</p>
+        <p class="text-text/60 text-sm">$20 advance/door</p>
+      </div>
+
+      <a
+        href="https://www.eventbrite.ca/e/dark-mode-dj-ddee-tickets-1983182608568?aff=affiliate3"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-orange text-primary! hover:bg-yellow mt-6 block w-full cursor-pointer rounded-md py-3 text-center no-underline transition-colors"
+      >
+        Get Tickets
+      </a>
+    </div>
+  </div>
+</section>

@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import ShowGrid from "./mixcloud/ShowGrid.astro";
 import ShowCard from "./mixcloud/ShowCard.astro";
-import TShirt from "./merch/TShirt.astro";
+import Event from "./events/Event.astro";
 import Schedule from "./schedules/Schedule.astro";
 import { march2026 } from "../data/march2026schedule";
 import febScheduleImage from "../assets/schedules/AFW_SundaySessions_FEB2026_SM_Launch2.jpg";
@@ -28,7 +28,7 @@ const newestShow = data.data?.[0];
         />
       )
     }
-    <TShirt />
+    <Event />
   </div>
   <Schedule schedule={march2026} />
   <section class="border-text/20 rounded-md border p-6">
