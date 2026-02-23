@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+import febScheduleImage from "../assets/schedules/AFW_SundaySessions_FEB2026_SM_Launch2.jpg";
+---
+
+<section class="border-text/20 rounded-md border p-6">
+  <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
+    <h2 class="text-text text-center text-2xl font-bold lg:w-1/2 lg:text-left">
+      Join us for coffee at our all-vinyl Sunday Sessions, all through February
+      2026 at <a
+        href="https://www.cassettecafebar.com/"
+        target="_blank"
+        rel="noopener noreferrer">Cassette Cafe</a
+      >!
+    </h2>
+    <Image
+      src={febScheduleImage}
+      alt="A Friendly Wave Sunday Sessions - February 2026 Schedule"
+      class="w-full lg:w-1/2"
+    />
+  </div>
+</section>
