@@ -1,17 +1,16 @@
 ---
-import { Image } from "astro:assets";
+// import { Image } from "astro:assets";
 import ShowGrid from "./mixcloud/ShowGrid.astro";
 import ShowCard from "./mixcloud/ShowCard.astro";
-import Event from "./events/Event.astro";
-import Schedule from "./schedules/Schedule.astro";
-import { march2026 } from "../data/march2026schedule";
+// import Schedule from "./schedules/Schedule.astro";
+// import { march2026 } from "../data/march2026schedule";
 
-// Fetch newest show for featured display
+// Fetch two newest shows for featured display
 const response = await fetch(
-  "https://api.mixcloud.com/afriendlywave/cloudcasts/?limit=1",
+  "https://api.mixcloud.com/afriendlywave/cloudcasts/?limit=2",
 );
 const data = await response.json();
-const newestShow = data.data?.[0];
+const featuredShows = data.data ?? [];
 ---
 
 <main class="mx-auto mt-16 mb-32 flex max-w-screen-2xl flex-col gap-16 px-6">
@@ -19,15 +18,14 @@ const newestShow = data.data?.[0];
     class="flex flex-col gap-6 md:flex-row md:items-stretch md:justify-start"
   >
     {
-      newestShow && (
+      featuredShows.map((show: any) => (
         <ShowCard
-          name={newestShow.name}
-          imageUrl={newestShow.pictures.extra_large}
-          feedKey={newestShow.key}
+          name={show.name}
+          imageUrl={show.pictures.extra_large}
+          feedKey={show.key}
         />
-      )
+      ))
     }
-    <Event />
   </div>
   <p class="text-text">
     <span class="text-link-hover">A Friendly Wave</span> is a unique cultural experiment
@@ -36,5 +34,5 @@ const newestShow = data.data?.[0];
     or simply curious about mindful cultural experiences, the Salt Spring Listening
     Space offers something transformative.
   </p>
-  <ShowGrid offset={1} />
+  <ShowGrid offset={2} />
 </main>
