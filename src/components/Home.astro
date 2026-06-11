@@ -7,13 +7,13 @@ import ShowCard from "./mixcloud/ShowCard.astro";
 
 // Fetch two newest shows for featured display
 const response = await fetch(
-  "https://api.mixcloud.com/afriendlywave/cloudcasts/?limit=2",
+  "https://api.mixcloud.com/afriendlywave/cloudcasts/?limit=3",
 );
 const data = await response.json();
 const featuredShows = data.data ?? [];
 ---
 
-<main class="mx-auto mt-16 mb-32 flex max-w-screen-2xl flex-col gap-16 px-6">
+<main class="mx-auto mt-16 mb-32 flex max-w-screen-2xl flex-col gap-24 px-6">
   <div
     class="flex flex-col gap-6 md:flex-row md:items-stretch md:justify-start"
   >
