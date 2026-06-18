@@ -1,5 +1,7 @@
 ---
-// import { Image } from "astro:assets";
+import { Image } from "astro:assets";
+import summerSessions from "../assets/AFW_SummerSessions_Eventbrite.jpg";
+import summerSessionsPortrait from "../assets/AFW_SummerSessions_Eventbrite_portrait.jpg";
 import ShowGrid from "./mixcloud/ShowGrid.astro";
 import ShowCard from "./mixcloud/ShowCard.astro";
 // import Schedule from "./schedules/Schedule.astro";
@@ -14,6 +16,21 @@ const featuredShows = data.data ?? [];
 ---
 
 <main class="mx-auto mt-16 mb-32 flex max-w-screen-2xl flex-col gap-24 px-6">
+  <a
+    href="#"
+    class="border-text/20 block overflow-hidden rounded-md border p-3"
+  >
+    <Image
+      src={summerSessionsPortrait}
+      alt="A Friendly Wave Summer Sessions"
+      class="w-full rounded md:hidden"
+    />
+    <Image
+      src={summerSessions}
+      alt="A Friendly Wave Summer Sessions"
+      class="hidden w-full rounded md:block"
+    />
+  </a>
   <div
     class="flex flex-col gap-6 md:flex-row md:items-stretch md:justify-start"
   >
