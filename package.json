@@ -11,16 +11,16 @@
     "poller:deploy": "cd workers/mixcloud-poller && pnpm deploy"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.12",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.17.1",
-    "tailwindcss": "^4.1.18"
+    "@astrojs/cloudflare": "^13.7.0",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^6.4.8",
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
-    "prettier": "3.8.1",
+    "prettier": "3.8.4",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "sharp": "^0.34.5",
-    "wrangler": "^4.61.1"
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "sharp": "^0.35.1",
+    "wrangler": "^4.101.0"
   }
 }
