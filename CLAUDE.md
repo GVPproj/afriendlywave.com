@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-afriendlywave.com is an Astro 5 static site with Tailwind CSS 4 styling. It's a minimal landing page with a Mixcloud audio player embed.
+afriendlywave.com is an Astro 7 static site with Tailwind CSS 4 styling. It's a minimal landing page with a Mixcloud audio player embed.
 
 ## Commands
 
@@ -16,7 +16,7 @@ pnpm preview   # Preview production build
 
 ## Architecture
 
-- **Framework**: Astro 5 with TypeScript (strict mode)
+- **Framework**: Astro 7 with TypeScript (strict mode)
 - **Styling**: Tailwind CSS 4 via Vite plugin
 - **Package Manager**: pnpm
 
