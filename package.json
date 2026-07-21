@@ -12,9 +12,8 @@
     "poller:deploy": "cd workers/mixcloud-poller && pnpm deploy"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^14.1.3",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.1.2",
+    "astro": "^7.1.3",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
