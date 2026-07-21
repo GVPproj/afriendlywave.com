@@ -1,6 +1,10 @@
 # afriendlywave.com
 
-Astro 5 static site for [afriendlywave.com](https://afriendlywave.com) — a landing page with a Mixcloud show grid and audio player widget. Deployed to Cloudflare Workers.
+Astro 7 static site for [afriendlywave.com](https://afriendlywave.com) — a landing page with a Mixcloud show grid and audio player widget. Deployed to Cloudflare Workers.
+
+## Deployment
+
+Plain static build — no `@astrojs/cloudflare` adapter (it broke static output under Astro 7). `astro build` writes static HTML to `./dist/`, which the Cloudflare Worker serves as assets-only (no worker script — see `wrangler.jsonc`). Images are optimized at build time via `astro:assets`/sharp, and `public/_headers` sets immutable caching for `/_astro/*`.
 
 ## Development
 
