@@ -14,14 +14,20 @@
   --color-text: #F0F0EB;
   --color-orange: #FD8200;
   --color-yellow: #FFEA48;
+  --color-navy: #001A72;
+  --color-link: #FD8200;
+  --color-link-hover: #FFEA48;
 }
 
 @layer base {
   a {
     color: var(--color-orange);
+    transition: color 150ms var(--ease-out);
   }
 
-  a:hover {
-    color: var(--color-yellow);
+  @media (hover: hover) {
+    a:hover {
+      color: var(--color-yellow);
+    }
   }
 }
