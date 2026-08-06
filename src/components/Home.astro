@@ -63,11 +63,13 @@ const featuredShows = data.data ?? [];
       <source src={partyWebm} type="video/webm" />
       <source src={partyMp4} type="video/mp4" />
     </video>
-    <div class="absolute inset-0 flex items-end md:items-center">
+    <div
+      class="absolute inset-0 flex items-center justify-center md:justify-start"
+    >
       <div
-        class="bg-primary/80 m-6 max-w-2xl rounded-md p-6 backdrop-blur-lg md:m-12 md:p-10"
+        class="bg-primary/80 m-10 max-w-2xl rounded-md p-5 backdrop-blur-lg md:m-12 md:p-10"
       >
-        <p class="text-text">
+        <p class="text-text text-sm md:text-base">
           <span class="text-link-hover">A Friendly Wave</span> is a unique cultural
           experiment that celebrates Salt Spring Island's creative spirit while introducing
           new perspectives on how we experience music together. Whether you're an
