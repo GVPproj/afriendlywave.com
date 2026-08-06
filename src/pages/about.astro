@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Banner from "../components/elements/Banner.astro";
 import { Image } from "astro:assets";
 import daySetup from "../assets/photos/molly_beaton/daySetup.jpg";
+import tufting from "../assets/afw_web_assets/jord_images/tufting01.jpg";
+import weight from "../assets/afw_web_assets/jord_images/weight.jpg";
 ---
 
 <Layout title="About - A Friendly Wave">
@@ -43,6 +45,19 @@ import daySetup from "../assets/photos/molly_beaton/daySetup.jpg";
         >A Friendly Wave</span
       > offers something welcoming and transformative.
     </p>
+
+    <figure style="grid-column: 1 / -1;">
+      <Image
+        src={tufting}
+        alt="Tufted wall hanging of the A Friendly Wave character"
+        class="w-full object-cover"
+      />
+      <figcaption class="text-text/50 mt-2 pr-4 text-right text-sm">
+Tufting: Veronica Classen; 
+        Photo: Jordan Ettinger
+      </figcaption>
+    </figure>
+
     <h2 class="text-center text-2xl">Four Unique Listening Experiences</h2>
 
     <div class="grid gap-4 lg:grid-cols-2">
@@ -98,6 +113,17 @@ import daySetup from "../assets/photos/molly_beaton/daySetup.jpg";
         </p>
       </div>
     </div>
+
+    <figure style="grid-column: 1 / -1;">
+      <Image
+        src={weight}
+        alt="A record weight with the A Friendly Wave character on a spinning record"
+        class="max-h-[80vh] w-full object-cover"
+      />
+      <figcaption class="text-text/50 mt-2 pr-4 text-right text-sm">
+        Photo: Jordan Ettinger
+      </figcaption>
+    </figure>
 
     <p>
       Limited capacity ensures an intimate experience. Stay tuned for ticketing

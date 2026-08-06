@@ -4,6 +4,9 @@ import summerSessions from "../assets/AFW_SummerSessions_Eventbrite.jpg";
 import summerSessionsPortrait from "../assets/AFW_SummerSessions_Eventbrite_portrait.jpg";
 import ShowGrid from "./mixcloud/ShowGrid.astro";
 import ShowCard from "./mixcloud/ShowCard.astro";
+import partyMp4 from "../assets/afw_web_assets/partyvids/web/afw-party-720.mp4";
+import partyWebm from "../assets/afw_web_assets/partyvids/web/afw-party-1080.webm";
+import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster.jpg";
 // import Schedule from "./schedules/Schedule.astro";
 // import { march2026 } from "../data/march2026schedule";
 
@@ -46,12 +49,48 @@ const featuredShows = data.data ?? [];
       ))
     }
   </div>
-  <p class="text-text">
-    <span class="text-link-hover">A Friendly Wave</span> is a unique cultural experiment
-    that celebrates Salt Spring Island's creative spirit while introducing new perspectives
-    on how we experience music together. Whether you're an audiophile, a casual listener,
-    or simply curious about mindful cultural experiences, the Salt Spring Listening
-    Space offers something transformative.
-  </p>
+  <section class="relative -mx-6 overflow-hidden md:mx-0 md:rounded-md">
+    <video
+      class="h-[60vh] w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster={partyPoster.src}
+      data-party-video
+    >
+      <source src={partyWebm} type="video/webm" />
+      <source src={partyMp4} type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 flex items-end md:items-center">
+      <div
+        class="bg-primary/80 m-6 max-w-2xl rounded-md p-6 backdrop-blur-lg md:m-12 md:p-10"
+      >
+        <p class="text-text">
+          <span class="text-link-hover">A Friendly Wave</span> is a unique cultural
+          experiment that celebrates Salt Spring Island's creative spirit while introducing
+          new perspectives on how we experience music together. Whether you're an
+          audiophile, a casual listener, or simply curious about mindful cultural
+          experiences, the Salt Spring Listening Space offers something transformative.
+        </p>
+      </div>
+    </div>
+  </section>
   <ShowGrid offset={3} />
 </main>
+
+<script>
+  function respectReducedMotion() {
+    const video = document.querySelector<HTMLVideoElement>(
+      "[data-party-video]",
+    );
+    if (!video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.removeAttribute("autoplay");
+      video.pause();
+    }
+  }
+  respectReducedMotion();
+  document.addEventListener("astro:page-load", respectReducedMotion);
+</script>
