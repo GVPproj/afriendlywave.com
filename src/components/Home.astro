@@ -83,7 +83,7 @@ const featuredShows = data.data ?? [];
 </main>
 
 <script>
-  function respectReducedMotion() {
+  function setupPartyVideo() {
     const video = document.querySelector<HTMLVideoElement>(
       "[data-party-video]",
     );
@@ -91,8 +91,11 @@ const featuredShows = data.data ?? [];
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       video.removeAttribute("autoplay");
       video.pause();
+    } else if (video.paused) {
+      // autoplay doesn't re-fire when ClientRouter swaps the page back in
+      video.play().catch(() => {});
     }
   }
-  respectReducedMotion();
-  document.addEventListener("astro:page-load", respectReducedMotion);
+  setupPartyVideo();
+  document.addEventListener("astro:page-load", setupPartyVideo);
 </script>
