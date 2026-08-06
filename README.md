@@ -12,7 +12,7 @@ Requires [Node.js](https://nodejs.org/) 22+ and [pnpm](https://pnpm.io/).
 
 ```bash
 pnpm install          # Install dependencies
-pnpm dev              # Start dev server at localhost:4321
+pnpm dev              # Start dev server at localhost:4322
 pnpm build            # Build production site to ./dist/
 pnpm preview          # Preview production build locally
 ```
