@@ -4,10 +4,11 @@ import partyWebm from "../assets/afw_web_assets/partyvids/web/afw-party-1080.web
 import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster.jpg";
 ---
 
-<section class="border-text/20 rounded-md border p-3">
-  <div class="relative overflow-hidden rounded">
+<!-- Mobile design: B from branch prototype/party-video-mobile. -->
+<section class="party-section md:border-text/20 md:rounded-md md:border md:p-3">
+  <div class="relative overflow-hidden md:rounded">
     <video
-      class="h-[60vh] w-full object-cover"
+      class="party-video w-full object-cover"
       autoplay
       muted
       loop
@@ -19,30 +20,115 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
       <source src={partyWebm} type="video/webm" />
       <source src={partyMp4} type="video/mp4" />
     </video>
+    <button
+      class="party-playback md:hidden"
+      type="button"
+      aria-label="Pause party video"
+      data-party-playback>Pause</button
+    >
     <div
-      class="absolute inset-0 flex items-center justify-center md:justify-start"
+      class="md:absolute md:inset-0 md:flex md:items-center md:justify-start"
     >
       <div
-        class="bg-primary/80 m-10 max-w-2xl rounded-md p-5 backdrop-blur-lg md:m-12 md:p-10"
+        class="party-story md:bg-primary/80 md:m-12 md:max-w-2xl md:rounded-md md:p-10 md:backdrop-blur-lg"
       >
-        <p class="text-text text-sm md:text-lg">
+        <p class="text-text md:text-lg">
           <span class="text-link-hover">A Friendly Wave</span> is a unique cultural
-          experiment that celebrates Salt Spring Island's creative spirit while
-          introducing new perspectives on how we experience music together. Whether
-          you're an audiophile, a casual listener, or simply curious about mindful
-          cultural experiences, the Salt Spring Listening Space offers something
-          transformative.
+          experiment that celebrates Salt Spring Island's creative spirit while introducing
+          new perspectives on how we experience music together.
+        </p>{" "}
+        <p class="text-text md:text-lg">
+          Whether you're an audiophile, a casual listener, or simply curious
+          about mindful cultural experiences, the Salt Spring Listening Space
+          offers something transformative.
         </p>
       </div>
     </div>
   </div>
 </section>
 
+<style>
+  .party-section {
+    margin-inline: -24px;
+  }
+  .party-video {
+    aspect-ratio: 3 / 4;
+    max-height: 72svh;
+  }
+  .party-story {
+    margin-inline: 24px;
+    padding-top: 26px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid #f0f0eb40;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .party-story p {
+    margin-bottom: 16px;
+  }
+  .party-playback {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid #f0f0eb60;
+    border-radius: 99px;
+    background: #001a72d9;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .party-playback:focus-visible {
+    outline: 2px solid var(--color-yellow);
+    outline-offset: 3px;
+  }
+  @media (min-width: 768px) {
+    .party-section {
+      margin-inline: 0;
+    }
+    .party-video {
+      height: 60vh;
+      max-height: none;
+      aspect-ratio: auto;
+    }
+    .party-story {
+      margin: 48px;
+      padding: 40px;
+      border-bottom: 0;
+      font-size: inherit;
+      line-height: inherit;
+    }
+    .party-story p {
+      display: inline;
+      margin: 0;
+    }
+  }
+</style>
+
 <script>
   function setupPartyVideo() {
     const video =
       document.querySelector<HTMLVideoElement>("[data-party-video]");
     if (!video) return;
+    const button = document.querySelector<HTMLButtonElement>(
+      "[data-party-playback]",
+    );
+    if (button) {
+      const updateLabel = () => {
+        const action = video.paused ? "Play" : "Pause";
+        button.textContent = action;
+        button.setAttribute("aria-label", `${action} party video`);
+      };
+      button.onclick = () => {
+        if (video.paused) video.play().catch(() => {});
+        else video.pause();
+      };
+      video.onplay = updateLabel;
+      video.onpause = updateLabel;
+      updateLabel();
+    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       video.removeAttribute("autoplay");
       video.pause();
