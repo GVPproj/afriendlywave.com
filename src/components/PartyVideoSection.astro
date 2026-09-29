@@ -24,8 +24,30 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
       class="party-playback md:hidden"
       type="button"
       aria-label="Pause party video"
-      data-party-playback>Pause</button
+      data-party-playback
+      data-paused="false"
     >
+      <svg
+        class="pause-icon"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M6 4h4v16H6zm8 0h4v16h-4z"></path>
+      </svg>
+      <svg
+        class="play-icon"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M8 4v16l12-8z"></path>
+      </svg>
+    </button>
     <div
       class="md:absolute md:inset-0 md:flex md:items-center md:justify-start"
     >
@@ -70,15 +92,22 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
     position: absolute;
     top: 12px;
     right: 12px;
-    min-height: 44px;
-    padding: 8px 12px;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
     border: 1px solid #f0f0eb60;
     border-radius: 99px;
     background: #001a72d9;
     color: var(--color-text);
-    font: inherit;
-    font-size: 12px;
     cursor: pointer;
+  }
+  .party-playback .play-icon,
+  .party-playback[data-paused="true"] .pause-icon {
+    display: none;
+  }
+  .party-playback[data-paused="true"] .play-icon {
+    display: block;
   }
   .party-playback:focus-visible {
     outline: 2px solid var(--color-yellow);
@@ -118,7 +147,7 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
     if (button) {
       const updateLabel = () => {
         const action = video.paused ? "Play" : "Pause";
-        button.textContent = action;
+        button.dataset.paused = String(video.paused);
         button.setAttribute("aria-label", `${action} party video`);
       };
       button.onclick = () => {
