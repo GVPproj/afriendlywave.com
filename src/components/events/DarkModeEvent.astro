@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import christaBelle from "../../assets/events/christa-belle.png";
+---
+
+<section
+  aria-labelledby="dark-mode-title"
+  class="border-text/20 rounded-md border p-3"
+>
+  <div class="grid items-center gap-6 lg:grid-cols-[3fr_2fr] lg:gap-10">
+    <Image
+      src={christaBelle}
+      alt="Black-and-white portrait of Christa Belle"
+      widths={[480, 768, 1024, 1440, 1880]}
+      sizes="(min-width: 1536px) 860px, (min-width: 1024px) 58vw, calc(100vw - 74px)"
+      format="webp"
+      loading="eager"
+      fetchpriority="high"
+      class="h-auto w-full rounded"
+    />
+
+    <div class="px-2 pb-3 lg:py-6 lg:pr-6 lg:pl-0">
+      <p class="text-text/60 mb-3 text-sm">Dark Mode</p>
+      <h2 id="dark-mode-title" class="text-2xl leading-tight sm:text-3xl">
+        Christa Belle<br />
+        <span class="text-text/60">&amp;</span> DJ Dampfnudel
+      </h2>
+
+      <div class="text-text/80 mt-6 space-y-1 text-sm leading-relaxed">
+        <p><time datetime="2026-10-24">Saturday, October 24, 2026</time></p>
+        <p>8:00–11:30pm</p>
+        <p class="pt-3">Cassette Cafe and Dive Bar</p>
+        <p class="text-text/60">Salt Spring Island, BC</p>
+      </div>
+
+      <a
+        href="https://www.eventbrite.ca/e/dark-mode-christa-belle-and-dj-dampfnudel-tickets-2003011763103"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="focus-visible:outline-yellow mt-6 inline-flex min-h-11 items-center gap-3 rounded text-base underline decoration-current/40 underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"
+      >
+        Get tickets <span aria-hidden="true">↗</span>
+        <span class="sr-only">for Dark Mode (opens in a new tab)</span>
+      </a>
+    </div>
+  </div>
+</section>
