@@ -1,0 +1,76 @@
+---
+// One page per entry in src/data/forms.ts (e.g. /join, /vendors), each embedding a Tally form.
+import Layout from "../layouts/Layout.astro";
+import { forms, type AfwForm } from "../data/forms";
+
+export function getStaticPaths() {
+  return forms.map((form) => ({
+    params: { form: form.slug },
+    props: { form },
+  }));
+}
+
+const { form } = Astro.props as { form: AfwForm };
+
+// Hide Tally's own title (the page has its heading), let the site background show
+// through, and resize the iframe to fit the form.
+const embedSrc = `https://tally.so/embed/${form.tallyId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`;
+---
+
+<Layout title={form.title}>
+  <main
+    class="grid gap-y-10 pt-16 pb-48"
+    style="grid-template-columns: 1fr min(48rem, calc(100% - 3rem)) 1fr;"
+  >
+    <h1 class="text-link text-3xl">{form.heading}</h1>
+    <iframe
+      data-tally-src={embedSrc}
+      loading="lazy"
+      width="100%"
+      height="600"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      title={form.title}></iframe>
+    <noscript>
+      <a class="text-link" href={`https://tally.so/r/${form.tallyId}`}>
+        Open the form
+      </a>
+    </noscript>
+  </main>
+</Layout>
+
+<style>
+  main > * {
+    grid-column: 2;
+  }
+</style>
+
+<script>
+  // Runs on every page visit, not just full loads: the site uses view transitions
+  // (ClientRouter), so an inline script would miss in-site navigation.
+  const TALLY_SCRIPT = "https://tally.so/widgets/embed.js";
+
+  function fillInFrames() {
+    document
+      .querySelectorAll<HTMLIFrameElement>("iframe[data-tally-src]:not([src])")
+      .forEach((frame) => (frame.src = frame.dataset.tallySrc!));
+  }
+
+  function loadTallyEmbeds() {
+    if (!document.querySelector("iframe[data-tally-src]")) return;
+    const tally = (window as any).Tally;
+    if (tally) return tally.loadEmbeds();
+    if (document.querySelector(`script[src="${TALLY_SCRIPT}"]`)) return;
+    const script = document.createElement("script");
+    script.src = TALLY_SCRIPT;
+    script.onload = () =>
+      (window as any).Tally
+        ? (window as any).Tally.loadEmbeds()
+        : fillInFrames();
+    script.onerror = fillInFrames;
+    document.head.appendChild(script);
+  }
+
+  document.addEventListener("astro:page-load", loadTallyEmbeds);
+</script>
