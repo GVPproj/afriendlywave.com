@@ -6,9 +6,16 @@ import "../styles/global.css";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "A Friendly Wave" } = Astro.props;
+const {
+  title = "A Friendly Wave",
+  description = "A unique cultural experiment celebrating Salt Spring Island's creative spirit. Experience music together at our Salt Spring listening space.",
+} = Astro.props;
+
+// Link-preview image (WhatsApp, iMessage, etc.): the dancers on navy, no event text.
+const ogImage = "https://afriendlywave.com/og/afw-preview.jpg";
 ---
 
 <!doctype html>
@@ -21,38 +28,24 @@ const { title = "A Friendly Wave" } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ClientRouter />
-    <meta
-      name="description"
-      content="A unique cultural experiment celebrating Salt Spring Island's creative spirit. Experience music together at our Salt Spring listening space."
-    />
+    <meta name="description" content={description} />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="A Friendly Wave" />
-    <meta
-      property="og:description"
-      content="A unique cultural experiment celebrating Salt Spring Island's creative spirit. Experience music together at our Salt Spring listening space."
-    />
+    <meta property="og:site_name" content="A Friendly Wave" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="https://res.cloudinary.com/dngvurpdw/image/upload/v1781824906/AFW_SummerSessions_Eventbrite_c0rbwo.jpg"
-    />
-    <meta
-      property="og:image:secure_url"
-      content="https://res.cloudinary.com/dngvurpdw/image/upload/v1781824906/AFW_SummerSessions_Eventbrite_c0rbwo.jpg"
-    />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="2210" />
-    <meta property="og:image:height" content="1130" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="A Friendly Wave" />
-    <meta name="twitter:description" content="A Friendly Wave" />
-    <meta
-      name="twitter:image"
-      content="https://res.cloudinary.com/dngvurpdw/image/upload/v1781824906/AFW_SummerSessions_Eventbrite_c0rbwo.jpg"
-    />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="bg-primary text-text font-sans text-xl">
     <Header />
