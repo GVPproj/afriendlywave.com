@@ -6,7 +6,7 @@ export interface AfwForm {
   slug: string;
   tallyId: string;
   heading: string;
-  title: string;
+  description: string; // link-preview text (WhatsApp, iMessage, etc.)
 }
 
 export const forms: AfwForm[] = [
@@ -14,24 +14,28 @@ export const forms: AfwForm[] = [
     slug: "join",
     tallyId: "b50vO0",
     heading: "Stay in Touch",
-    title: "Stay in touch - A Friendly Wave",
+    description:
+      "Get event news and find ways to take part: volunteering, spinning records, selling at a swap or hosting something.",
   },
   {
     slug: "artists",
     tallyId: "kdVv5d",
     heading: "Artist & Presenter: Submit Info",
-    title: "Artist & presenter info - A Friendly Wave",
+    description:
+      "Playing, presenting or showing work with AFW? Send us what we need to promote you.",
   },
   {
     slug: "vendors",
     tallyId: "XxKzEe",
     heading: "Record Swap & Shop: Vendor Application",
-    title: "Vendor application - A Friendly Wave",
+    description:
+      "Sell records at the AFW Record Swap & Shop, Sat Oct 24, 10am–2pm at Cassette Café. Free vendor space. Apply by Oct 19.",
   },
   {
     slug: "workshop",
     tallyId: "zxaLZZ",
     heading: "Youth DJ Workshop: Registration",
-    title: "Youth DJ workshop - A Friendly Wave",
+    description:
+      "A free intro DJ workshop for young people (ages 8+) with Graham Van Pelt. Sun Oct 25, 2–4pm at Cassette Café.",
   },
 ];
