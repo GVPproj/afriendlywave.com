@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import christaBelle from "../../assets/Christa Belle 4 Credit Anna Shkuratoff - meredith bates.JPG.jpeg";
+import wolfgang from "../../assets/events/wolfgang.jpeg";
 
 const ticketUrl =
   "https://www.eventbrite.ca/e/dark-mode-christa-belle-and-dj-dampfnudel-tickets-2003011763103";
@@ -10,30 +11,44 @@ const ticketUrl =
   aria-labelledby="dark-mode-title"
   class="border-text/20 rounded-md border p-3"
 >
-  <div class="grid items-center gap-6 lg:grid-cols-[3fr_2fr] lg:gap-10">
-    <figure>
-      <a
-        href={ticketUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Get tickets for Dark Mode (opens in a new tab)"
-        class="event-photo focus-visible:outline-yellow relative isolate block overflow-hidden rounded transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4"
-      >
-        <Image
-          src={christaBelle}
-          alt="Portrait of Christa Belle"
-          widths={[480, 768, 1024, 1440, 1880]}
-          sizes="(min-width: 1536px) 860px, (min-width: 1024px) 58vw, calc(100vw - 74px)"
-          format="webp"
-          loading="eager"
-          fetchpriority="high"
-          class="h-64 w-full object-cover object-[50%_45%] [filter:grayscale(1)_brightness(1.05)_contrast(1.1)] sm:h-80 lg:h-96"
-        />
-      </a>
-      <figcaption class="text-text/50 mt-2 pr-4 text-right text-sm">
-        Photo: Anna Shkuratoff
-      </figcaption>
-    </figure>
+  <div class="grid items-stretch gap-6 lg:grid-cols-[3fr_2fr] lg:gap-10">
+    <event-photo-rotator>
+      <figure class="relative h-full">
+        <a
+          href={ticketUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Get tickets for Dark Mode (opens in a new tab)"
+          class="event-photo focus-visible:outline-yellow relative isolate block h-64 overflow-hidden rounded transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 sm:h-80 lg:h-full lg:min-h-96"
+        >
+          <Image
+            data-event-slide
+            src={christaBelle}
+            alt="Portrait of Christa Belle"
+            widths={[480, 768, 1024, 1440, 1880]}
+            sizes="(min-width: 1536px) 860px, (min-width: 1024px) 58vw, calc(100vw - 74px)"
+            format="webp"
+            loading="eager"
+            fetchpriority="high"
+            class="absolute inset-0 h-full w-full object-cover object-[50%_45%] [filter:grayscale(1)_brightness(1.05)_contrast(1.1)]"
+          />
+          <Image
+            data-event-slide
+            aria-hidden="true"
+            src={wolfgang}
+            alt="Wolfgang seated in the doorway of a music studio"
+            widths={[480, 768, 1024, 1334]}
+            sizes="(min-width: 1536px) 860px, (min-width: 1024px) 58vw, calc(100vw - 74px)"
+            format="webp"
+            loading="eager"
+            class="absolute inset-0 h-full w-full object-cover opacity-0 [filter:grayscale(1)_brightness(1.05)_contrast(1.1)]"
+          />
+        </a>
+        <figcaption class="pointer-events-none absolute right-2 bottom-2 rounded bg-black/60 px-2 py-1 text-right text-sm text-white">
+          <span data-event-credit>Photo: Anna Shkuratoff</span>
+        </figcaption>
+      </figure>
+    </event-photo-rotator>
 
     <div class="px-2 pb-3 lg:py-6 lg:pr-6 lg:pl-0">
       <p class="text-text/60 mb-3 text-lg">Dark Mode</p>
@@ -62,8 +77,69 @@ const ticketUrl =
   </div>
 </section>
 
+<script>
+  class EventPhotoRotator extends HTMLElement {
+    connectedCallback() {
+      const slides =
+        this.querySelectorAll<HTMLImageElement>("[data-event-slide]");
+      const credit = this.querySelector<HTMLElement>("[data-event-credit]");
+      if (slides.length !== 2 || !credit) return;
+
+      const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let active = 0;
+      let timer: ReturnType<typeof setInterval> | undefined;
+      const showNext = () => {
+        active = (active + 1) % slides.length;
+        slides.forEach((slide, index) => {
+          slide.classList.toggle("opacity-0", index !== active);
+          slide.setAttribute("aria-hidden", String(index !== active));
+        });
+        credit.parentElement?.classList.toggle("invisible", active !== 0);
+      };
+      const updatePlayback = () => {
+        clearInterval(timer);
+        if (!motion.matches && !document.hidden)
+          timer = setInterval(showNext, 6000);
+      };
+      motion.addEventListener("change", updatePlayback);
+      document.addEventListener("visibilitychange", updatePlayback);
+      updatePlayback();
+      this.cleanup = () => {
+        clearInterval(timer);
+        motion.removeEventListener("change", updatePlayback);
+        document.removeEventListener("visibilitychange", updatePlayback);
+      };
+    }
+
+    private cleanup?: () => void;
+
+    disconnectedCallback() {
+      this.cleanup?.();
+    }
+  }
+
+  if (!customElements.get("event-photo-rotator")) {
+    customElements.define("event-photo-rotator", EventPhotoRotator);
+  }
+</script>
+
 <style>
-  /* Static monochrome grain, kept inside the image link and off the caption. */
+  event-photo-rotator {
+    display: block;
+    min-width: 0;
+  }
+
+  [data-event-slide] {
+    transition: opacity 700ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-event-slide] {
+      transition: none;
+    }
+  }
+
+  /* Static monochrome grain, kept inside the image link and behind the caption. */
   .event-photo::after {
     content: "";
     position: absolute;
