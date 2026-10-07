@@ -1,7 +1,9 @@
 ---
 // One page per entry in src/data/forms.ts (e.g. /join, /vendors), each embedding a Tally form.
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import { forms, type AfwForm } from "../data/forms";
+import dancers from "../assets/forms/dancers.png";
 
 export function getStaticPaths() {
   return forms.map((form) => ({
@@ -11,6 +13,9 @@ export function getStaticPaths() {
 }
 
 const { form } = Astro.props as { form: AfwForm };
+
+// "Record Swap & Shop: Vendor Application" -> white title, orange subtitle after the colon.
+const [headingMain, headingSub] = form.heading.split(": ");
 
 // Hide Tally's own title (the page has its heading), let the site background show
 // through, and resize the iframe to fit the form.
@@ -22,7 +27,24 @@ const embedSrc = `https://tally.so/embed/${form.tallyId}?alignLeft=1&hideTitle=1
     class="grid gap-y-10 pt-16 pb-48"
     style="grid-template-columns: 1fr min(48rem, calc(100% - 3rem)) 1fr;"
   >
-    <h1 class="text-link text-3xl">{form.heading}</h1>
+    <div class="flex items-end justify-between gap-6">
+      <h1 class="text-text text-3xl">
+        {headingMain}
+        {
+          headingSub && (
+            <>
+              : <span class="text-link">{headingSub}</span>
+            </>
+          )
+        }
+      </h1>
+      <Image
+        src={dancers}
+        alt="Line drawing of a crowd of people dancing"
+        width={240}
+        class="h-auto w-20 shrink-0 sm:w-28"
+      />
+    </div>
     <iframe
       data-tally-src={embedSrc}
       loading="lazy"

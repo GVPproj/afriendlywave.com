@@ -13,25 +13,25 @@ export const forms: AfwForm[] = [
   {
     slug: "join",
     tallyId: "b50vO0",
-    heading: "Stay in touch",
+    heading: "Stay in Touch",
     title: "Stay in touch - A Friendly Wave",
   },
   {
     slug: "artists",
     tallyId: "kdVv5d",
-    heading: "Artist & presenter info",
+    heading: "Artist & Presenter: Submit Info",
     title: "Artist & presenter info - A Friendly Wave",
   },
   {
     slug: "vendors",
     tallyId: "XxKzEe",
-    heading: "Record Swap & Shop: vendor application",
+    heading: "Record Swap & Shop: Vendor Application",
     title: "Vendor application - A Friendly Wave",
   },
   {
     slug: "workshop",
     tallyId: "zxaLZZ",
-    heading: "Youth DJ workshop",
+    heading: "Youth DJ Workshop: Registration",
     title: "Youth DJ workshop - A Friendly Wave",
   },
 ];
