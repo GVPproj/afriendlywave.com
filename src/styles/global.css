@@ -27,7 +27,7 @@
 /* Match Iosevka's 0.5em advance using only ~0.6em local faces.
    Menlo/DejaVu and Consolas need different scales; do not add them here.
    Vertical overrides use Iosevka's OS/2 typo metrics / size-adjust.
-   See public/fonts/README.md for derivation and platform limitations. */
+   See public/fonts/README.md for testing and platform limitations. */
 @font-face {
   font-family: "Iosevka Fallback";
   src:
