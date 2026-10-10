@@ -9,9 +9,9 @@ const ticketUrl =
 
 <section
   aria-labelledby="dark-mode-title"
-  class="border-ink/20 rounded-md border p-3"
+  class="border-ink/20 rounded-card p-card border"
 >
-  <div class="grid items-stretch gap-6 lg:grid-cols-[3fr_2fr] lg:gap-10">
+  <div class="gap-gutter grid items-stretch lg:grid-cols-[3fr_2fr]">
     <event-photo-rotator>
       <figure class="relative h-full">
         <a
@@ -44,20 +44,29 @@ const ticketUrl =
             class="absolute inset-0 h-full w-full object-cover opacity-0 [filter:grayscale(1)_brightness(1.05)_contrast(1.1)]"
           />
         </a>
-        <figcaption class="pointer-events-none absolute right-2 bottom-2 rounded bg-black/60 px-2 py-1 text-right text-sm text-white">
+        <figcaption
+          class="pointer-events-none absolute right-2 bottom-2 rounded bg-black/60 px-2 py-1 text-right text-sm text-white"
+        >
           <span data-event-credit>Photo: Anna Shkuratoff</span>
         </figcaption>
       </figure>
     </event-photo-rotator>
 
-    <div class="px-2 pb-3 lg:py-6 lg:pr-6 lg:pl-0">
-      <p class="text-ink mb-3 text-lg">Dark Mode</p>
-      <h2 id="dark-mode-title" class="font-heading text-3xl leading-tight font-black sm:text-4xl">
+    <div class="px-card pb-panel lg:py-panel lg:pr-panel lg:pl-0">
+      <p
+        class="bg-secondary text-on-secondary mb-panel px-card inline-block py-1 text-lg"
+      >
+        Dark Mode
+      </p>
+      <h2
+        id="dark-mode-title"
+        class="font-heading leading-heading text-4xl font-black uppercase sm:text-5xl"
+      >
         Christa Belle<br />
         <span class="text-ink">&amp;</span> DJ Dampfnudel
       </h2>
 
-      <div class="text-ink mt-6 space-y-1 text-lg leading-relaxed">
+      <div class="text-ink mt-panel leading-copy text-lg">
         <p><time datetime="2026-10-24">Saturday, October 24, 2026</time></p>
         <p>8:00–11:30pm</p>
         <p class="pt-3">Cassette Cafe and Dive Bar</p>
@@ -68,7 +77,7 @@ const ticketUrl =
         href={ticketUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="bg-accent text-on-accent hover:bg-highlight hover:text-on-accent focus-visible:bg-highlight focus-visible:outline-highlight mt-6 inline-flex min-h-11 items-center justify-center rounded px-5 py-3 text-2xl transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
+        class="bg-accent text-on-accent hover:bg-highlight hover:text-on-accent focus-visible:bg-highlight focus-visible:outline-highlight mt-panel rounded-card px-panel py-card inline-flex min-h-11 items-center justify-center text-2xl transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
       >
         Get tickets
         <span class="sr-only">for Dark Mode (opens in a new tab)</span>

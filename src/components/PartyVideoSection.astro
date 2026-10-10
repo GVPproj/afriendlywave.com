@@ -5,8 +5,10 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
 ---
 
 <!-- Mobile design: B from branch prototype/party-video-mobile. -->
-<section class="party-section md:border-ink/20 md:rounded-md md:border md:p-3">
-  <div class="relative overflow-hidden md:rounded">
+<section
+  class="party-section md:border-ink/20 md:rounded-card md:p-card md:border"
+>
+  <div class="relative overflow-hidden">
     <video
       class="party-video w-full object-cover"
       autoplay
@@ -52,7 +54,7 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
       class="md:absolute md:inset-0 md:flex md:items-center md:justify-start"
     >
       <div
-        class="party-story md:bg-surface/80 md:m-12 md:max-w-2xl md:rounded-md md:p-10 md:backdrop-blur-lg"
+        class="party-story md:bg-surface/80 md:max-w-2xl md:backdrop-blur-lg"
       >
         <p class="text-ink md:text-lg">
           <span class="text-highlight">A Friendly Wave</span> is a unique cultural
@@ -71,29 +73,28 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
 
 <style>
   .party-section {
-    margin-inline: -24px;
+    margin-inline: calc(-1 * var(--spacing-gutter));
   }
   .party-video {
     aspect-ratio: 3 / 4;
     max-height: 72svh;
   }
   .party-story {
-    margin-inline: 24px;
-    padding-top: 26px;
-    padding-bottom: 36px;
+    margin-inline: var(--spacing-gutter);
+    padding-block: var(--spacing-panel);
     border-bottom: 1px solid
       color-mix(in srgb, var(--color-ink) calc(64 / 255 * 100%), transparent);
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: 1.125rem;
+    line-height: var(--leading-copy);
   }
   .party-story p {
-    margin-bottom: 16px;
+    margin-bottom: var(--spacing-panel);
   }
   .party-playback {
     position: absolute;
     z-index: 10;
-    top: 12px;
-    right: 12px;
+    top: var(--spacing-card);
+    right: var(--spacing-card);
     width: 44px;
     height: 44px;
     display: grid;
@@ -130,8 +131,8 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
       aspect-ratio: auto;
     }
     .party-story {
-      margin: 48px;
-      padding: 40px;
+      margin: var(--spacing-gutter);
+      padding: var(--spacing-panel);
       border-bottom: 0;
       font-size: inherit;
       line-height: inherit;

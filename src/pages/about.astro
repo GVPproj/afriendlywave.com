@@ -8,10 +8,7 @@ import weight from "../assets/afw_web_assets/jord_images/weight.jpg";
 ---
 
 <Layout title="About - A Friendly Wave">
-  <main
-    class="grid gap-y-16 pt-16 pb-48"
-    style="grid-template-columns: 1fr min(64rem, calc(100% - 3rem)) 1fr;"
-  >
+  <main class="content-grid">
     <Banner />
     <figure style="grid-column: 1 / -1;">
       <Image
@@ -53,15 +50,16 @@ import weight from "../assets/afw_web_assets/jord_images/weight.jpg";
         class="w-full object-cover"
       />
       <figcaption class="text-muted mt-2 pr-4 text-right text-sm">
-Tufting: Veronica Classen; 
-        Photo: Jordan Ettinger
+        Tufting: Veronica Classen; Photo: Jordan Ettinger
       </figcaption>
     </figure>
 
-    <h2 class="text-center text-2xl">Four Unique Listening Experiences</h2>
+    <h2 class="text-center text-3xl uppercase">
+      Four Unique Listening Experiences
+    </h2>
 
-    <div class="grid gap-4 lg:grid-cols-2">
-      <div class="border-ink/20 rounded-md border p-6">
+    <div class="gap-gutter grid lg:grid-cols-2">
+      <div class="border-ink/20 rounded-card p-panel border">
         <h3 class="text-ink text-xl">
           Café Mode <span class="text-muted">| Daytime Hours</span>
         </h3>
@@ -72,7 +70,7 @@ Tufting: Veronica Classen;
         </p>
       </div>
 
-      <div class="border-ink/20 rounded-md border p-6">
+      <div class="border-ink/20 rounded-card p-panel border">
         <h3 class="text-ink text-xl">
           Community Curation <span class="text-muted">| 4:00-6:30 PM</span>
         </h3>
@@ -85,7 +83,7 @@ Tufting: Veronica Classen;
         </p>
       </div>
 
-      <div class="border-ink/20 rounded-md border p-6">
+      <div class="border-ink/20 rounded-card p-panel border">
         <h3 class="text-ink text-xl">
           Dark Mode <span class="text-muted">| 7:00 PM - 12:00 AM</span>
         </h3>
@@ -98,7 +96,7 @@ Tufting: Veronica Classen;
         </p>
       </div>
 
-      <div class="border-ink/20 rounded-md border p-6">
+      <div class="border-ink/20 rounded-card p-panel border">
         <h3 class="text-ink text-xl">
           Deep Listening Sessions <span class="text-muted"
             >| Sundays, 1:30-3:00 PM</span

@@ -17,7 +17,9 @@ const data = await response.json();
 const featuredShows = data.data ?? [];
 ---
 
-<main class="mx-auto mt-16 mb-32 flex max-w-screen-2xl flex-col gap-24 px-6">
+<main
+  class="site-container mt-page-start mb-player-clearance gap-section flex flex-col"
+>
   <!-- <a -->
   <!--   target="_blank" -->
   <!--   rel="noopener noreferrer" -->
@@ -37,7 +39,7 @@ const featuredShows = data.data ?? [];
   <!-- </a> -->
   <DarkModeEvent />
   <div
-    class="flex flex-col gap-6 md:flex-row md:items-stretch md:justify-start"
+    class="gap-gutter flex flex-col md:flex-row md:items-stretch md:justify-start"
   >
     {
       featuredShows.map((show: any) => (
