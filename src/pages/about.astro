@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Banner from "../components/elements/Banner.astro";
+import ModeBadge from "../components/elements/ModeBadge.astro";
 import { Image } from "astro:assets";
 import daySetup from "../assets/photos/molly_beaton/daySetup.jpg";
 import tufting from "../assets/afw_web_assets/jord_images/tufting01.jpg";
@@ -60,10 +61,8 @@ import weight from "../assets/afw_web_assets/jord_images/weight.jpg";
 
     <div class="gap-gutter grid lg:grid-cols-2">
       <div class="border-ink/20 rounded-card p-panel border">
-        <h3 class="text-ink text-xl">
-          Café Mode <span class="text-muted">| Daytime Hours</span>
-        </h3>
-        <p class="text-muted mt-2">
+        <ModeBadge>Café Mode</ModeBadge>
+        <p class="text-ink mt-panel">
           Throughout the day, our space offers thoughtfully curated ambient
           soundscapes perfect for conversation, work, or quiet reflection.
           Quality sound becomes a subtle enhancement to daily island life.
@@ -71,10 +70,8 @@ import weight from "../assets/afw_web_assets/jord_images/weight.jpg";
       </div>
 
       <div class="border-ink/20 rounded-card p-panel border">
-        <h3 class="text-ink text-xl">
-          Community Curation <span class="text-muted">| 4:00-6:30 PM</span>
-        </h3>
-        <p class="text-muted mt-2">
+        <ModeBadge>Community Curation</ModeBadge>
+        <p class="text-ink mt-panel">
           Early evenings transform into platforms for local collectors and
           musical storytellers. Experience Salt Spring's diverse musical culture
           as community members share their collections and personal journeys
@@ -84,10 +81,8 @@ import weight from "../assets/afw_web_assets/jord_images/weight.jpg";
       </div>
 
       <div class="border-ink/20 rounded-card p-panel border">
-        <h3 class="text-ink text-xl">
-          Dark Mode <span class="text-muted">| 7:00 PM - 12:00 AM</span>
-        </h3>
-        <p class="text-muted mt-2">
+        <ModeBadge>Dark Mode</ModeBadge>
+        <p class="text-ink mt-panel">
           As night falls, the space evolves into a sophisticated listening
           environment. Guest selectors and renowned DJs guide sonic journeys
           that balance deep listening with movement. This isn't loud, generic
@@ -97,12 +92,8 @@ import weight from "../assets/afw_web_assets/jord_images/weight.jpg";
       </div>
 
       <div class="border-ink/20 rounded-card p-panel border">
-        <h3 class="text-ink text-xl">
-          Deep Listening Sessions <span class="text-muted"
-            >| Sundays, 1:30-3:00 PM</span
-          >
-        </h3>
-        <p class="text-muted mt-2">
+        <ModeBadge>Deep Listening Sessions</ModeBadge>
+        <p class="text-ink mt-panel">
           Dedicated sessions where complete albums are experienced without
           interruption. In our age of shuffled playlists and fragmented
           attention, rediscover the meditative power of hearing a musical work

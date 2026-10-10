@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<h3
+  class:list={[
+    "bg-secondary text-on-secondary px-card inline-block py-1 text-lg",
+    className,
+  ]}
+>
+  <slot />
+</h3>

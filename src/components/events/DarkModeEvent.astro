@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import ModeBadge from "../elements/ModeBadge.astro";
 import christaBelle from "../../assets/Christa Belle 4 Credit Anna Shkuratoff - meredith bates.JPG.jpeg";
 import wolfgang from "../../assets/events/wolfgang.jpeg";
 
@@ -52,12 +53,8 @@ const ticketUrl =
       </figure>
     </event-photo-rotator>
 
-    <div class="lg:flex lg:flex-col lg:items-start lg:pr-panel">
-      <p
-        class="bg-secondary text-on-secondary mb-panel px-card inline-block py-1 text-lg"
-      >
-        Dark Mode
-      </p>
+    <div class="lg:pr-panel lg:flex lg:flex-col lg:items-start">
+      <ModeBadge class="mb-panel">Dark Mode</ModeBadge>
       <h2
         id="dark-mode-title"
         class="font-heading leading-heading text-4xl font-black uppercase sm:text-5xl"
