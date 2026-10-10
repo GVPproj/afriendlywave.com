@@ -25,6 +25,15 @@ const ogImage = "https://afriendlywave.com/og/afw-preview.jpg";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <!-- Nav-critical face: start the fetch before the stylesheet is parsed.
+         crossorigin is required for the preload to match the font request. -->
+    <link
+      rel="preload"
+      href="/fonts/iosevka-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ClientRouter />
