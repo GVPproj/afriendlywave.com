@@ -16,10 +16,20 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Iosevka Aile';
+  src: url('/fonts/iosevka-aile-heavy.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-sans: 'Iosevka', ui-monospace, monospace;
+  --font-heading: 'Iosevka Aile', ui-sans-serif, sans-serif;
   --color-surface: #001A72;
   --color-ink: #F0F0EB;
+  --color-muted: color-mix(in srgb, var(--color-ink) 70%, var(--color-surface));
   --color-accent: #FD8200;
   --color-highlight: #FFEA48;
   --color-on-accent: #001A72;

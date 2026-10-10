@@ -39,7 +39,8 @@ src/
 
 Defined in `src/styles/global.css`. Use semantic colour tokens:
 - `surface`: page and header backgrounds
-- `ink`: text and borders (use opacity modifiers for muted variants)
+- `ink`: primary text and borders (opacity modifiers for borders)
+- `muted`: secondary text; use `text-muted` rather than text opacity modifiers
 - `accent`: links, logos, and buttons
 - `highlight`: hover, focus, and emphasis
 - `on-accent`: text on accent buttons
