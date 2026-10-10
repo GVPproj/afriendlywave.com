@@ -4,11 +4,9 @@ import partyWebm from "../assets/afw_web_assets/partyvids/web/afw-party-1080.web
 import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster.jpg";
 ---
 
-<!-- Mobile design: B from branch prototype/party-video-mobile. -->
-<section
-  class="party-section md:border-ink/20 md:rounded-card md:p-card md:border"
->
-  <div class="relative overflow-hidden">
+<!-- Selected B: prototype/block-design-variants; see docs/identity.md. -->
+<section class="party-section">
+  <div class="relative">
     <video
       class="party-video w-full object-cover"
       autoplay
@@ -50,18 +48,14 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
         <path d="M8 4v16l12-8z"></path>
       </svg>
     </button>
-    <div
-      class="md:absolute md:inset-0 md:flex md:items-center md:justify-start"
-    >
-      <div
-        class="party-story md:bg-surface/80 md:max-w-2xl md:backdrop-blur-lg"
-      >
-        <p class="text-ink md:text-lg">
-          <span class="text-highlight">A Friendly Wave</span> is a unique cultural
+    <div class="party-story-panel">
+      <div class="party-story">
+        <p>
+          <span class="party-story-name">A Friendly Wave</span> is a unique cultural
           experiment that celebrates Salt Spring Island's creative spirit while introducing
           new perspectives on how we experience music together.
         </p>{" "}
-        <p class="text-ink md:text-lg">
+        <p>
           Whether you're an audiophile, a casual listener, or simply curious
           about mindful cultural experiences, the Salt Spring Listening Space
           offers something transformative.
@@ -73,22 +67,34 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
 
 <style>
   .party-section {
-    margin-inline: calc(-1 * var(--spacing-gutter));
+    padding-bottom: 48px;
   }
   .party-video {
-    aspect-ratio: 3 / 4;
+    height: 400px;
     max-height: 72svh;
   }
+  .party-story-panel {
+    position: relative;
+    width: 92%;
+    margin: -50px 16px 0 0;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    box-shadow: 16px 16px 0 var(--color-secondary);
+  }
   .party-story {
-    margin-inline: var(--spacing-gutter);
-    padding-block: var(--spacing-panel);
-    border-bottom: 1px solid
-      color-mix(in srgb, var(--color-ink) calc(64 / 255 * 100%), transparent);
+    padding: 24px;
     font-size: 1.125rem;
     line-height: var(--leading-copy);
   }
-  .party-story p {
-    margin-bottom: var(--spacing-panel);
+  .party-story-name {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 2rem;
+    /* Keep the display-sized inline name from expanding the first line box. */
+    line-height: 0;
+  }
+  .party-story p + p {
+    margin-top: var(--spacing-panel);
   }
   .party-playback {
     position: absolute;
@@ -122,24 +128,19 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
     outline-offset: 3px;
   }
   @media (min-width: 768px) {
-    .party-section {
-      margin-inline: 0;
-    }
     .party-video {
-      height: 60vh;
+      height: 520px;
       max-height: none;
-      aspect-ratio: auto;
+    }
+    .party-story-panel {
+      width: 65%;
+      margin: -120px 5% 0 auto;
     }
     .party-story {
-      margin: var(--spacing-gutter);
-      padding: var(--spacing-panel);
-      border-bottom: 0;
-      font-size: inherit;
-      line-height: inherit;
+      padding: 32px;
     }
     .party-story p {
       display: inline;
-      margin: 0;
     }
   }
 </style>

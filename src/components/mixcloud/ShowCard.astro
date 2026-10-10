@@ -3,8 +3,9 @@ interface Props {
   name: string;
   imageUrl: string;
   feedKey: string; // e.g. "/afriendlywave/show-name/"
+  layout?: "featured" | "archive";
 }
-const { name, imageUrl, feedKey } = Astro.props;
+const { name, imageUrl, feedKey, layout = "featured" } = Astro.props;
 
 // Fetch tags from Mixcloud API at build time
 interface MixcloudTag {
@@ -28,9 +29,12 @@ try {
 <button
   type="button"
   data-feed={feedKey}
-  class="group show-card border-ink/20 rounded-card p-card block flex-1 cursor-pointer border text-left transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100 md:min-w-0"
+  class:list={[
+    "group show-card flex-1 cursor-pointer text-left transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100",
+    { "show-card--archive": layout === "archive" },
+  ]}
 >
-  <div class="relative aspect-square overflow-hidden">
+  <div class="show-card__artwork relative aspect-square overflow-hidden">
     <img
       src={imageUrl}
       alt={name}
@@ -40,10 +44,10 @@ try {
       height="600"
     />
     <div
-      class="bg-surface group-hover:bg-accent absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-full transition-colors"
+      class="show-card__play bg-highlight text-surface absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-full"
     >
       <svg
-        class="text-ink group-hover:text-on-accent ml-0.5 h-7 w-7"
+        class="ml-0.5 h-7 w-7"
         viewBox="0 0 24 24"
         fill="currentColor"
       >
@@ -51,12 +55,12 @@ try {
       </svg>
     </div>
   </div>
-  <p class="text-ink mt-2 truncate text-lg">{name}</p>
+  <p class="show-card__caption">{name}</p>
   {
     tags.length > 0 && (
-      <div class="mt-1 flex flex-wrap gap-1">
+      <div class="show-card__tags">
         {tags.slice(0, 3).map((tag) => (
-          <span class="bg-ink/10 text-muted rounded-card inline-flex items-center px-2 py-1 text-xs leading-none">
+          <span class="show-card__tag">
             {tag.name}
           </span>
         ))}
@@ -64,3 +68,78 @@ try {
     )
   }
 </button>
+
+<style>
+  .show-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+    margin-right: 10px;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    white-space: normal;
+  }
+
+  .show-card__artwork {
+    width: 100%;
+  }
+
+  .show-card__caption {
+    position: relative;
+    margin: 18px 0 0;
+    padding: 16px 18px;
+    background: var(--color-highlight);
+    color: var(--color-surface);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(1.3rem, 2vw, 1.9rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+
+  .show-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    padding: 12px 0 18px;
+  }
+
+  .show-card__tag {
+    padding: 4px 8px;
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 768px) {
+    .show-card {
+      margin-right: 0;
+    }
+
+    .show-card--archive {
+      display: grid;
+      grid-template-columns: 40% minmax(0, 1fr);
+      align-items: center;
+      column-gap: 22px;
+      padding: 18px;
+    }
+
+    .show-card--archive .show-card__artwork {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .show-card--archive .show-card__caption {
+      grid-column: 2;
+      margin: 0 -28px 0 0;
+    }
+
+    .show-card--archive .show-card__tags {
+      grid-column: 2;
+    }
+  }
+</style>

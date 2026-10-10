@@ -26,6 +26,12 @@ Components use semantic tokens in `src/styles/global.css`, not palette literals.
 
 Existing raster artwork and third-party iframe contents are not recoloured. Lime emphasis follows the navy-background posters; chalk white is a deliberate web adaptation for regular text, not an extracted fifth palette swatch.
 
+## Border-free show cards and story block
+
+Selected direction: B from `prototype/block-design-variants` (archive commit `b65a1cc`). This exploration answered how to replace repeated outline boxes with the identity's colour fields and offset labels. No implementation issue was supplied; this document is the archive pointer.
+
+Show cards use berry sleeves, square artwork, regular-weight Iosevka titles on offset lime labels, boxed tags, and bottom-left play buttons. Featured cards stay vertical; archive cards pair artwork and copy horizontally on desktop, reverting to full-width artwork above copy on mobile. The story block overlaps the video with a copper panel and berry offset shadow. Its enlarged inline name has zero line-height so it does not stretch the first line's leading. Production components own these styles; the prototype and switcher remain only on the archive branch.
+
 ## Season 4 homepage hero
 
 Selected direction: variant A, explored on `prototype/season4-hero-variants` (archive commit `055c6ed`). One copper backdrop contains the Dark Mode event and original artboard-8 schedule. Equal-height panels sit side by side at desktop widths and stack on mobile, sharing a berry offset shadow. No additional hero headings or dancer illustration. `DarkModeEvent.astro` uses container queries so its photo stays above its details in a narrow panel, regardless of viewport width.

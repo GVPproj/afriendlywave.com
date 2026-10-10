@@ -17,11 +17,12 @@ const shows = (data.data || []).slice(offset);
 ---
 
 <div
-  class="gap-gutter mx-auto grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+  class="show-archive mx-auto grid w-full grid-cols-1 gap-[36px] md:grid-cols-2"
 >
   {
     shows.map((show: any) => (
       <ShowCard
+        layout="archive"
         name={show.name}
         imageUrl={show.pictures.extra_large}
         feedKey={show.key}
