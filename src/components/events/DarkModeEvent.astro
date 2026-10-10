@@ -8,11 +8,8 @@ const ticketUrl =
   "https://www.eventbrite.ca/e/dark-mode-christa-belle-and-dj-dampfnudel-tickets-2003011763103";
 ---
 
-<section
-  aria-labelledby="dark-mode-title"
-  class="border-ink/20 rounded-card p-card border"
->
-  <div class="gap-gutter grid items-stretch lg:grid-cols-[3fr_2fr]">
+<section aria-labelledby="dark-mode-title" class="dark-mode-event">
+  <div class="event-grid gap-gutter grid items-stretch">
     <event-photo-rotator>
       <figure class="relative h-full">
         <a
@@ -20,14 +17,14 @@ const ticketUrl =
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Get tickets for Dark Mode (opens in a new tab)"
-          class="event-photo focus-visible:outline-highlight relative isolate block h-64 overflow-hidden transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 sm:h-80 lg:h-full"
+          class="event-photo focus-visible:outline-highlight relative isolate block h-full overflow-hidden transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4"
         >
           <Image
             data-event-slide
             src={christaBelle}
             alt="Portrait of Christa Belle"
             widths={[480, 768, 1024, 1440, 1880]}
-            sizes="(min-width: 1536px) 860px, (min-width: 1024px) 58vw, calc(100vw - 74px)"
+            sizes="(min-width: 1536px) 610px, (min-width: 1024px) 40vw, 85vw"
             format="webp"
             loading="eager"
             fetchpriority="high"
@@ -39,7 +36,7 @@ const ticketUrl =
             src={wolfgang}
             alt="Wolfgang seated in the doorway of a music studio"
             widths={[480, 768, 1024, 1334]}
-            sizes="(min-width: 1536px) 860px, (min-width: 1024px) 58vw, calc(100vw - 74px)"
+            sizes="(min-width: 1536px) 610px, (min-width: 1024px) 40vw, 85vw"
             format="webp"
             loading="eager"
             class="absolute inset-0 h-full w-full object-cover opacity-0 [filter:grayscale(1)_brightness(1.05)_contrast(1.1)]"
@@ -53,11 +50,11 @@ const ticketUrl =
       </figure>
     </event-photo-rotator>
 
-    <div class="lg:pr-panel lg:flex lg:flex-col lg:items-start">
+    <div>
       <ModeBadge class="mb-panel">Dark Mode</ModeBadge>
       <h2
         id="dark-mode-title"
-        class="font-heading leading-heading text-4xl font-black uppercase sm:text-5xl"
+        class="font-heading leading-heading font-black uppercase"
       >
         Christa Belle<br />
         <span class="text-ink">&amp;</span> DJ Dampfnudel
@@ -130,6 +127,32 @@ const ticketUrl =
 </script>
 
 <style>
+  .dark-mode-event {
+    container: dark-mode / inline-size;
+    height: 100%;
+    padding: clamp(1rem, 2vw, 1.75rem);
+  }
+
+  .event-grid {
+    height: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(clamp(16rem, 48cqw, 20rem), 1fr) auto;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 7cqw, 2.75rem);
+  }
+
+  @container dark-mode (min-width: 48rem) {
+    .event-grid {
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: minmax(20rem, 1fr);
+    }
+    h2 {
+      font-size: 3rem;
+    }
+  }
+
   event-photo-rotator {
     display: block;
     min-width: 0;

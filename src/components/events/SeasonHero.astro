@@ -1,0 +1,38 @@
+---
+import DarkModeEvent from "./DarkModeEvent.astro";
+import SeasonSchedule from "./SeasonSchedule.astro";
+---
+
+<div class="season-hero">
+  <div class="event-panel"><DarkModeEvent /></div>
+  <div class="schedule-panel"><SeasonSchedule /></div>
+</div>
+
+<style>
+  .season-hero {
+    display: grid;
+    gap: var(--spacing-gutter);
+    padding: clamp(1rem, 3vw, 2.75rem);
+    background: var(--color-accent);
+  }
+
+  .event-panel,
+  .schedule-panel {
+    min-width: 0;
+    box-shadow: 0.65rem 0.65rem 0 var(--color-secondary);
+  }
+
+  .event-panel {
+    background: var(--color-surface);
+  }
+
+  .schedule-panel {
+    background: var(--color-highlight);
+  }
+
+  @media (min-width: 1024px) {
+    .season-hero {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

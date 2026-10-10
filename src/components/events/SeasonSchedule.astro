@@ -1,0 +1,40 @@
+---
+// Original artboard 8 from AFW_001-02_Identity-v2_1.1.ai.
+// The poster retains its original "8pm–late" wording; the event card has precise times.
+import { Image } from "astro:assets";
+import schedule from "../../assets/events/season4-schedule.webp";
+---
+
+<section
+  aria-labelledby="season4-schedule-title"
+  class="grid h-full items-center"
+>
+  <Image
+    src={schedule}
+    alt="A Friendly Wave Season 4 schedule poster: lime background, navy programme and oversized berry LISTEN UP! lettering. Full programme transcribed below."
+    widths={[480, 768, 1200, 1600, 2000]}
+    sizes="auto, (min-width: 1536px) 670px, (min-width: 1024px) 44vw, 90vw"
+    loading="lazy"
+    class="block h-auto w-full"
+  />
+  <div class="sr-only">
+    <h2 id="season4-schedule-title">A Friendly Wave / Season 4</h2>
+    <p>Cassette Café, Salt Spring Island. October 23–25, 2026.</p>
+    <h3>Friday, October 23</h3>
+    <ul>
+      <li>7pm–10pm: Art Opening — Deep Gnome + live DJ.</li>
+    </ul>
+    <h3>Saturday, October 24</h3>
+    <ul>
+      <li>10am–2pm: Café Mode — AFW Selectors.</li>
+      <li>10am–2pm: Record Shop &amp; Swap.</li>
+      <li>4pm–5pm: Community Curation — Michelle Footz.</li>
+      <li>8pm–late: Dark Mode — DJ Dampfnudel, Christa Belle.</li>
+    </ul>
+    <h3>Sunday, October 25</h3>
+    <ul>
+      <li>10am–1pm: Café Mode — DJ Gus, DJ Interchil.</li>
+      <li>2pm–4pm: Youth DJ Workshop — Graham Van Pelt.</li>
+    </ul>
+  </div>
+</section>

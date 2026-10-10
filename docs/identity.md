@@ -25,3 +25,9 @@ Components use semantic tokens in `src/styles/global.css`, not palette literals.
 - Square panel edges and uppercase display titles echo the posters; content order, event information and integrations are unchanged.
 
 Existing raster artwork and third-party iframe contents are not recoloured. Lime emphasis follows the navy-background posters; chalk white is a deliberate web adaptation for regular text, not an extracted fifth palette swatch.
+
+## Season 4 homepage hero
+
+Selected direction: variant A, explored on `prototype/season4-hero-variants` (archive commit `055c6ed`). One copper backdrop contains the Dark Mode event and original artboard-8 schedule. Equal-height panels sit side by side at desktop widths and stack on mobile, sharing a berry offset shadow. No additional hero headings or dancer illustration. `DarkModeEvent.astro` uses container queries so its photo stays above its details in a narrow panel, regardless of viewport width.
+
+`src/assets/events/season4-schedule.webp` is a 2000px-wide export of artboard 8 from the Illustrator source, with a screen-reader transcript in `SeasonSchedule.astro`. Its original “8pm–late” copy is preserved; the adjacent event card gives the precise 8:00–11:30pm time. The prototype branch is the primary-source archive; no implementation issue was supplied.
