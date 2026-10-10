@@ -10,7 +10,7 @@ interface Props {
 const { schedule } = Astro.props;
 ---
 
-<section class="border-text/20 text-text rounded-md border p-6">
+<section class="border-ink/20 text-ink rounded-md border p-6">
   <div class="mx-auto w-full md:w-1/2">
     <Banner />
   </div>
@@ -29,7 +29,7 @@ const { schedule } = Astro.props;
         <div
           class={
             dayIdx < schedule.days.length - 1
-              ? "border-text/30 border-b pb-6"
+              ? "border-ink/30 border-b pb-6"
               : ""
           }
         >
@@ -56,7 +56,7 @@ const { schedule } = Astro.props;
                 href={section.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-orange hover:text-yellow block"
+                class="text-accent hover:text-highlight block"
                 data-ticket-link
               >
                 {content}
@@ -70,7 +70,7 @@ const { schedule } = Astro.props;
     }
   </div>
   <!-- Desktop table -->
-  <table class="text-text mx-auto hidden max-w-7xl border-collapse lg:table">
+  <table class="text-ink mx-auto hidden max-w-7xl border-collapse lg:table">
     {
       schedule.days.map((day, dayIdx) => (
         <tbody>
@@ -79,9 +79,9 @@ const { schedule } = Astro.props;
             const isLastSection = secIdx === day.sections.length - 1;
             const isLastDay = dayIdx === schedule.days.length - 1;
             const borderClass =
-              isLastSection && !isLastDay ? "border-text/30 border-b" : "";
+              isLastSection && !isLastDay ? "border-ink/30 border-b" : "";
             const topBorderClass =
-              isFirstSection && dayIdx > 0 ? "border-text/30 border-t" : "";
+              isFirstSection && dayIdx > 0 ? "border-ink/30 border-t" : "";
 
             const ptClass = isFirstSection ? "pt-5" : "pt-6";
             const pbClass = isLastSection && !isLastDay ? "pb-5" : "";
@@ -96,7 +96,7 @@ const { schedule } = Astro.props;
                   href={section.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-orange group-hover:text-yellow"
+                  class="text-accent group-hover:text-highlight"
                 >
                   {content}
                 </a>
@@ -163,7 +163,7 @@ const { schedule } = Astro.props;
   </table>
   <div
     id="ticket-tooltip"
-    class="bg-text text-primary pointer-events-none fixed z-50 rounded px-2 py-1 text-lg opacity-0 transition-opacity duration-200 max-md:hidden"
+    class="bg-ink text-surface pointer-events-none fixed z-50 rounded px-2 py-1 text-lg opacity-0 transition-opacity duration-200 max-md:hidden"
   >
     Get Tickets
   </div>

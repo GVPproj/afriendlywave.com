@@ -9,7 +9,7 @@ const ticketUrl =
 
 <section
   aria-labelledby="dark-mode-title"
-  class="border-text/20 rounded-md border p-3"
+  class="border-ink/20 rounded-md border p-3"
 >
   <div class="grid items-stretch gap-6 lg:grid-cols-[3fr_2fr] lg:gap-10">
     <event-photo-rotator>
@@ -19,7 +19,7 @@ const ticketUrl =
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Get tickets for Dark Mode (opens in a new tab)"
-          class="event-photo focus-visible:outline-yellow relative isolate block h-64 overflow-hidden rounded transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 sm:h-80 lg:h-full lg:min-h-96"
+          class="event-photo focus-visible:outline-highlight relative isolate block h-64 overflow-hidden rounded transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 sm:h-80 lg:h-full lg:min-h-96"
         >
           <Image
             data-event-slide
@@ -51,24 +51,24 @@ const ticketUrl =
     </event-photo-rotator>
 
     <div class="px-2 pb-3 lg:py-6 lg:pr-6 lg:pl-0">
-      <p class="text-text/60 mb-3 text-lg">Dark Mode</p>
+      <p class="text-ink/60 mb-3 text-lg">Dark Mode</p>
       <h2 id="dark-mode-title" class="text-3xl leading-tight sm:text-4xl">
         Christa Belle<br />
-        <span class="text-text/60">&amp;</span> DJ Dampfnudel
+        <span class="text-ink/60">&amp;</span> DJ Dampfnudel
       </h2>
 
-      <div class="text-text/80 mt-6 space-y-1 text-lg leading-relaxed">
+      <div class="text-ink/80 mt-6 space-y-1 text-lg leading-relaxed">
         <p><time datetime="2026-10-24">Saturday, October 24, 2026</time></p>
         <p>8:00–11:30pm</p>
         <p class="pt-3">Cassette Cafe and Dive Bar</p>
-        <p class="text-text/60">Salt Spring Island, BC</p>
+        <p class="text-ink/60">Salt Spring Island, BC</p>
       </div>
 
       <a
         href={ticketUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="bg-orange text-navy hover:bg-yellow hover:text-navy focus-visible:bg-yellow focus-visible:outline-yellow mt-6 inline-flex min-h-11 items-center justify-center rounded px-5 py-3 text-2xl transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
+        class="bg-accent text-on-accent hover:bg-highlight hover:text-on-accent focus-visible:bg-highlight focus-visible:outline-highlight mt-6 inline-flex min-h-11 items-center justify-center rounded px-5 py-3 text-2xl transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
       >
         Get tickets
         <span class="sr-only">for Dark Mode (opens in a new tab)</span>

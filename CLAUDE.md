@@ -37,7 +37,11 @@ src/
 
 ### Theme Variables
 
-Defined in `src/styles/global.css`:
-- `--color-navy`: #001A72 (primary)
-- `--color-orange`: #FD8200 (links)
-- Custom font: Panchi Mono (loaded from `/public/fonts/`)
+Defined in `src/styles/global.css`. Use semantic colour tokens:
+- `surface`: page and header backgrounds
+- `ink`: text and borders (use opacity modifiers for muted variants)
+- `accent`: links, logos, and buttons
+- `highlight`: hover, focus, and emphasis
+- `on-accent`: text on accent buttons
+
+Custom font: Panchi Mono (loaded from `/public/fonts/`).

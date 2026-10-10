@@ -10,24 +10,22 @@
 
 @theme {
   --font-sans: 'Panchi Mono', ui-monospace, monospace;
-  --color-primary: #001A72;
-  --color-text: #F0F0EB;
-  --color-orange: #FD8200;
-  --color-yellow: #FFEA48;
-  --color-navy: #001A72;
-  --color-link: #FD8200;
-  --color-link-hover: #FFEA48;
+  --color-surface: #001A72;
+  --color-ink: #F0F0EB;
+  --color-accent: #FD8200;
+  --color-highlight: #FFEA48;
+  --color-on-accent: #001A72;
 }
 
 @layer base {
   a {
-    color: var(--color-orange);
+    color: var(--color-accent);
     transition: color 150ms var(--ease-out);
   }
 
   @media (hover: hover) {
     a:hover {
-      color: var(--color-yellow);
+      color: var(--color-highlight);
     }
   }
 }

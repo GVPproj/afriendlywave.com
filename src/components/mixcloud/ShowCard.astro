@@ -28,7 +28,7 @@ try {
 <button
   type="button"
   data-feed={feedKey}
-  class="group show-card border-text/20 block flex-1 cursor-pointer rounded-md border p-3 text-left transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100 md:min-w-0"
+  class="group show-card border-ink/20 block flex-1 cursor-pointer rounded-md border p-3 text-left transition-transform duration-150 ease-out active:scale-[0.98] motion-reduce:active:scale-100 md:min-w-0"
 >
   <div class="relative aspect-square overflow-hidden rounded">
     <img
@@ -40,10 +40,10 @@ try {
       height="600"
     />
     <div
-      class="bg-primary group-hover:bg-orange absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-full transition-colors"
+      class="bg-surface group-hover:bg-accent absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center rounded-full transition-colors"
     >
       <svg
-        class="text-text ml-0.5 h-7 w-7"
+        class="text-ink ml-0.5 h-7 w-7"
         viewBox="0 0 24 24"
         fill="currentColor"
       >
@@ -51,12 +51,12 @@ try {
       </svg>
     </div>
   </div>
-  <p class="text-text mt-2 truncate text-lg">{name}</p>
+  <p class="text-ink mt-2 truncate text-lg">{name}</p>
   {
     tags.length > 0 && (
       <div class="mt-1 flex flex-wrap gap-1">
         {tags.slice(0, 3).map((tag) => (
-          <span class="bg-text/10 text-text/70 rounded-full px-2 pt-1 text-xs">
+          <span class="bg-ink/10 text-ink/70 rounded-full px-2 pt-1 text-xs">
             {tag.name}
           </span>
         ))}

@@ -5,7 +5,7 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
 ---
 
 <!-- Mobile design: B from branch prototype/party-video-mobile. -->
-<section class="party-section md:border-text/20 md:rounded-md md:border md:p-3">
+<section class="party-section md:border-ink/20 md:rounded-md md:border md:p-3">
   <div class="relative overflow-hidden md:rounded">
     <video
       class="party-video w-full object-cover"
@@ -52,14 +52,14 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
       class="md:absolute md:inset-0 md:flex md:items-center md:justify-start"
     >
       <div
-        class="party-story md:bg-primary/80 md:m-12 md:max-w-2xl md:rounded-md md:p-10 md:backdrop-blur-lg"
+        class="party-story md:bg-surface/80 md:m-12 md:max-w-2xl md:rounded-md md:p-10 md:backdrop-blur-lg"
       >
-        <p class="text-text md:text-lg">
-          <span class="text-link-hover">A Friendly Wave</span> is a unique cultural
+        <p class="text-ink md:text-lg">
+          <span class="text-highlight">A Friendly Wave</span> is a unique cultural
           experiment that celebrates Salt Spring Island's creative spirit while introducing
           new perspectives on how we experience music together.
         </p>{" "}
-        <p class="text-text md:text-lg">
+        <p class="text-ink md:text-lg">
           Whether you're an audiophile, a casual listener, or simply curious
           about mindful cultural experiences, the Salt Spring Listening Space
           offers something transformative.
@@ -81,7 +81,8 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
     margin-inline: 24px;
     padding-top: 26px;
     padding-bottom: 36px;
-    border-bottom: 1px solid #f0f0eb40;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-ink) calc(64 / 255 * 100%), transparent);
     font-size: 15px;
     line-height: 1.65;
   }
@@ -97,10 +98,15 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
     height: 44px;
     display: grid;
     place-items: center;
-    border: 1px solid #f0f0eb60;
+    border: 1px solid
+      color-mix(in srgb, var(--color-ink) calc(96 / 255 * 100%), transparent);
     border-radius: 99px;
-    background: #001a72d9;
-    color: var(--color-text);
+    background: color-mix(
+      in srgb,
+      var(--color-surface) calc(217 / 255 * 100%),
+      transparent
+    );
+    color: var(--color-ink);
     cursor: pointer;
   }
   .party-playback .play-icon,
@@ -111,7 +117,7 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
     display: block;
   }
   .party-playback:focus-visible {
-    outline: 2px solid var(--color-yellow);
+    outline: 2px solid var(--color-highlight);
     outline-offset: 3px;
   }
   @media (min-width: 768px) {
