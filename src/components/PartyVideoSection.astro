@@ -20,34 +20,6 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
       <source src={partyWebm} type="video/webm" />
       <source src={partyMp4} type="video/mp4" />
     </video>
-    <button
-      class="party-playback md:hidden"
-      type="button"
-      aria-label="Pause party video"
-      data-party-playback
-      data-paused="false"
-    >
-      <svg
-        class="pause-icon"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path d="M6 4h4v16H6zm8 0h4v16h-4z"></path>
-      </svg>
-      <svg
-        class="play-icon"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path d="M8 4v16l12-8z"></path>
-      </svg>
-    </button>
     <div class="party-story-panel">
       <div class="party-story">
         <p>
@@ -96,37 +68,6 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
   .party-story p + p {
     margin-top: var(--spacing-panel);
   }
-  .party-playback {
-    position: absolute;
-    z-index: 10;
-    top: var(--spacing-card);
-    right: var(--spacing-card);
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    border: 1px solid
-      color-mix(in srgb, var(--color-ink) calc(96 / 255 * 100%), transparent);
-    border-radius: 99px;
-    background: color-mix(
-      in srgb,
-      var(--color-surface) calc(217 / 255 * 100%),
-      transparent
-    );
-    color: var(--color-ink);
-    cursor: pointer;
-  }
-  .party-playback .play-icon,
-  .party-playback[data-paused="true"] .pause-icon {
-    display: none;
-  }
-  .party-playback[data-paused="true"] .play-icon {
-    display: block;
-  }
-  .party-playback:focus-visible {
-    outline: 2px solid var(--color-highlight);
-    outline-offset: 3px;
-  }
   @media (min-width: 768px) {
     .party-video {
       height: 520px;
@@ -146,35 +87,21 @@ import partyPoster from "../assets/afw_web_assets/partyvids/web/afw-party-poster
 </style>
 
 <script>
-  function setupPartyVideo() {
-    const video =
-      document.querySelector<HTMLVideoElement>("[data-party-video]");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function syncPartyVideoPlayback() {
+    const video = document.querySelector<HTMLVideoElement>("[data-party-video]");
     if (!video) return;
-    const button = document.querySelector<HTMLButtonElement>(
-      "[data-party-playback]",
-    );
-    if (button) {
-      const updateLabel = () => {
-        const action = video.paused ? "Play" : "Pause";
-        button.dataset.paused = String(video.paused);
-        button.setAttribute("aria-label", `${action} party video`);
-      };
-      button.onclick = () => {
-        if (video.paused) video.play().catch(() => {});
-        else video.pause();
-      };
-      video.onplay = updateLabel;
-      video.onpause = updateLabel;
-      updateLabel();
-    }
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      video.removeAttribute("autoplay");
+
+    if (reducedMotion.matches) {
       video.pause();
     } else if (video.paused) {
-      // autoplay doesn't re-fire when ClientRouter swaps the page back in
+      // Autoplay doesn't re-fire when ClientRouter swaps the page back in.
       video.play().catch(() => {});
     }
   }
-  setupPartyVideo();
-  document.addEventListener("astro:page-load", setupPartyVideo);
+
+  reducedMotion.addEventListener("change", syncPartyVideoPlayback);
+  syncPartyVideoPlayback();
+  document.addEventListener("astro:page-load", syncPartyVideoPlayback);
 </script>
