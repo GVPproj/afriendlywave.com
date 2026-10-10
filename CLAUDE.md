@@ -44,4 +44,4 @@ Defined in `src/styles/global.css`. Use semantic colour tokens:
 - `highlight`: hover, focus, and emphasis
 - `on-accent`: text on accent buttons
 
-Custom font: Panchi Mono (loaded from `/public/fonts/`).
+Custom font: Iosevka (regular and bold WOFF2, served locally from `/public/fonts/`).
