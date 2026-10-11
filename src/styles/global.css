@@ -109,6 +109,7 @@
   --leading-heading: 1;
   --spacing-gutter: clamp(1.125rem, 3vw, 2.25rem);
   --spacing-card: 0.875rem;
+  --spacing-bezel: 0.65rem;
   --spacing-panel: clamp(1.125rem, 2vw, 1.75rem);
   --spacing-section: clamp(3.5rem, 6vw, 5.25rem);
   --spacing-page-start: clamp(1.75rem, 4vw, 3.5rem);

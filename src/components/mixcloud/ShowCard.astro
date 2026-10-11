@@ -78,8 +78,9 @@ try {
     margin-right: 10px;
     border: 0;
     border-radius: 0;
-    padding: 0;
-    background: transparent;
+    padding: var(--spacing-bezel);
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
     white-space: normal;
   }
 
@@ -89,8 +90,8 @@ try {
 
   .show-card__caption {
     position: relative;
-    margin: 18px 0 0;
-    padding: 16px 18px;
+    margin: var(--spacing-card) 0 0;
+    padding: 0;
     background: var(--color-secondary);
     color: var(--color-on-secondary);
     font-family: var(--font-sans);
@@ -104,13 +105,14 @@ try {
     display: flex;
     flex-wrap: wrap;
     gap: 6px 14px;
-    padding: 12px 0 18px;
+    margin-top: auto;
+    padding: var(--spacing-card) 0 0;
   }
 
   .show-card__tag {
     padding: 4px 8px;
-    background: var(--color-secondary);
-    color: var(--color-on-secondary);
+    background: var(--color-surface);
+    color: var(--color-ink);
     font-size: 0.85rem;
     overflow-wrap: anywhere;
   }
@@ -124,8 +126,7 @@ try {
       display: grid;
       grid-template-columns: 40% minmax(0, 1fr);
       align-items: center;
-      column-gap: 22px;
-      padding: 18px;
+      column-gap: var(--spacing-card);
     }
 
     .show-card--archive .show-card__artwork {
@@ -135,11 +136,14 @@ try {
 
     .show-card--archive .show-card__caption {
       grid-column: 2;
-      margin: 0 -28px 0 0;
+      align-self: start;
+      margin: 0;
     }
 
     .show-card--archive .show-card__tags {
       grid-column: 2;
+      align-self: end;
+      padding-bottom: 0;
     }
   }
 </style>
