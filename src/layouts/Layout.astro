@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import Header from "../components/elements/Header.astro";
+import Footer from "../components/elements/Footer.astro";
 import MixcloudPlayer from "../components/mixcloud/MixcloudPlayer.astro";
 import "../styles/global.css";
 
@@ -59,6 +60,7 @@ const ogImage = "https://afriendlywave.com/og/afw-preview.jpg";
   <body class="bg-surface text-ink text-body leading-copy font-sans">
     <Header />
     <slot />
+    <Footer />
     <MixcloudPlayer />
   </body>
 </html>

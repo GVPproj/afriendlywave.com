@@ -1,0 +1,26 @@
+---
+import Banner from "./Banner.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-surface text-ink border-ink/20 pb-player-clearance border-t">
+  <div class="site-container pt-panel">
+    <div
+      class="gap-panel flex flex-col sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div class="w-48" role="img" aria-label="A Friendly Wave">
+        <Banner />
+      </div>
+      <p>
+        <span class="text-muted">Reach out: </span>
+        <a
+          href="mailto:hello@afriendlywave.com"
+          class="inline-flex min-h-11 items-center break-all"
+          >hello@afriendlywave.com</a
+        >
+      </p>
+    </div>
+    <p class="text-muted mt-panel text-sm">&copy; {year} A Friendly Wave</p>
+  </div>
+</footer>
