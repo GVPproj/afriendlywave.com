@@ -102,8 +102,6 @@
   --color-on-accent: var(--color-brand-navy);
   --color-on-secondary: var(--color-brand-lime);
 
-  /* Artboards 2–3: 42pt copy / 54pt leading, 36pt margins, 72pt gutters.
-     Adapted to a ~28px web baseline rather than literal poster dimensions. */
   --text-body: 1.3125rem;
   --leading-copy: 1.3;
   --leading-heading: 1;
