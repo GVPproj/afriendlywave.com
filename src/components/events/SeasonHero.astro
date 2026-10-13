@@ -1,4 +1,8 @@
 ---
+import { Image } from "astro:assets";
+// Original artboards 4 and 6 from AFW_001-02_Identity-v2_1.1.ai.
+import recordSwap from "../../assets/events/record-swap.webp";
+import djWorkshop from "../../assets/events/dj-workshop.webp";
 import DarkModeEvent from "./DarkModeEvent.astro";
 import SeasonSchedule from "./SeasonSchedule.astro";
 ---
@@ -6,6 +10,34 @@ import SeasonSchedule from "./SeasonSchedule.astro";
 <div class="season-hero">
   <div class="event-panel"><DarkModeEvent /></div>
   <div class="schedule-panel"><SeasonSchedule /></div>
+  <a
+    href="/vendors"
+    class="poster-panel focus-visible:outline-highlight block transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4"
+  >
+    <Image
+      src={recordSwap}
+      alt="Record Swap & Shop: Saturday October 24, 2026, 10am–2pm at Cassette Café. With collectors from Victoria, Vancouver and Salt Spring Island."
+      widths={[480, 768, 1200, 1620]}
+      sizes="auto, (min-width: 1536px) 670px, (min-width: 1024px) 44vw, 90vw"
+      loading="lazy"
+      class="block h-auto w-full"
+    />
+    <span class="sr-only">Apply for a vendor space.</span>
+  </a>
+  <a
+    href="/workshop"
+    class="poster-panel focus-visible:outline-highlight block transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4"
+  >
+    <Image
+      src={djWorkshop}
+      alt="Youth DJ Workshop: Sunday October 25, 2026, 2pm–4pm at Cassette Café. Led by Graham Van Pelt of Somethin’ Else DJs, for ages 8 and up."
+      widths={[480, 768, 1200, 1620]}
+      sizes="auto, (min-width: 1536px) 670px, (min-width: 1024px) 44vw, 90vw"
+      loading="lazy"
+      class="block h-auto w-full"
+    />
+    <span class="sr-only">Register for the youth DJ workshop.</span>
+  </a>
 </div>
 
 <style>
@@ -17,9 +49,11 @@ import SeasonSchedule from "./SeasonSchedule.astro";
   }
 
   .event-panel,
-  .schedule-panel {
+  .schedule-panel,
+  .poster-panel {
     min-width: 0;
-    box-shadow: var(--spacing-bezel) var(--spacing-bezel) 0 var(--color-secondary);
+    box-shadow: var(--spacing-bezel) var(--spacing-bezel) 0
+      var(--color-secondary);
   }
 
   .event-panel {
