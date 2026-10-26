@@ -1,15 +1,8 @@
 ---
-import { Image } from "astro:assets";
-import summerSessions from "../assets/AFW_SummerSessions_Eventbrite.jpg";
-import summerSessionsPortrait from "../assets/AFW_SummerSessions_Eventbrite_portrait.jpg";
 import ShowGrid from "./mixcloud/ShowGrid.astro";
 import ShowCard from "./mixcloud/ShowCard.astro";
 import PartyVideoSection from "./PartyVideoSection.astro";
-import SeasonHero from "./events/SeasonHero.astro";
-// import Schedule from "./schedules/Schedule.astro";
-// import { march2026 } from "../data/march2026schedule";
 
-// Fetch two newest shows for featured display
 const response = await fetch(
   "https://api.mixcloud.com/afriendlywave/cloudcasts/?limit=3",
 );
@@ -20,26 +13,8 @@ const featuredShows = data.data ?? [];
 <main
   class="site-container mt-page-start mb-player-clearance gap-section flex flex-col"
 >
-  <!-- <a -->
-  <!--   target="_blank" -->
-  <!--   rel="noopener noreferrer" -->
-  <!--   href="https://www.eventbrite.ca/e/a-friendly-wave-summer-session-tickets-1992181387157" -->
-  <!--   class="border-ink/20 block overflow-hidden rounded-md border p-3" -->
-  <!-- > -->
-  <!--   <Image -->
-  <!--     src={summerSessionsPortrait} -->
-  <!--     alt="A Friendly Wave Summer Sessions" -->
-  <!--     class="w-full rounded md:hidden" -->
-  <!--   /> -->
-  <!--   <Image -->
-  <!--     src={summerSessions} -->
-  <!--     alt="A Friendly Wave Summer Sessions" -->
-  <!--     class="hidden w-full rounded md:block" -->
-  <!--   /> -->
-  <!-- </a> -->
-  <SeasonHero />
   <div
-    class="show-featured flex flex-col gap-[36px] md:flex-row md:items-stretch md:justify-start"
+    class="show-featured flex flex-col gap-9 md:flex-row md:items-stretch md:justify-start"
   >
     {
       featuredShows.map((show: any) => (
