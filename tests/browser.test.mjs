@@ -1,5 +1,28 @@
 import { expect, test } from "@playwright/test";
 
+test("tutorial navigation stays clickable after slide transitions", async ({ page }) => {
+  await page.goto("/dj-tutorial/");
+  const navigation = page.getByRole("navigation", { name: "Slide navigation" });
+  for (let slide = 2; slide <= 11; slide++) {
+    // Wait for the fade to settle: the controls must not only work mid-transition.
+    await page.waitForTimeout(800);
+    await navigation.getByRole("button", { name: "Next slide", exact: true }).click();
+    await expect(page).toHaveURL(new RegExp(`/#/${slide}$`));
+  }
+  await page.waitForTimeout(800);
+  await navigation.getByRole("button", { name: "Previous slide", exact: true }).click();
+  await expect(page).toHaveURL(/\/#\/10$/);
+});
+
+const telemetryOrigin = "https://static.cloudflareinsights.com/";
+
+// Telemetry is outside the tutorial contract; don't count automated test visits.
+test.beforeEach(async ({ page }) => {
+  await page.route(`${telemetryOrigin}**`, (route) =>
+    route.abort("blockedbyclient"),
+  );
+});
+
 test("tutorial loads all slides and keeps its assets under the tutorial path", async ({
   page,
   baseURL,
@@ -10,11 +33,18 @@ test("tutorial loads all slides and keeps its assets under the tutorial path", a
   const origin = new URL(baseURL).origin;
   page.on("pageerror", (error) => errors.push(error.message));
   page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+    if (
+      message.type() === "error" &&
+      !message.location().url.startsWith(telemetryOrigin)
+    ) {
+      errors.push(message.text());
+    }
   });
-  page.on("requestfailed", (request) =>
-    errors.push(`${request.url()}: ${request.failure()?.errorText}`),
-  );
+  page.on("requestfailed", (request) => {
+    if (!request.url().startsWith(telemetryOrigin)) {
+      errors.push(`${request.url()}: ${request.failure()?.errorText}`);
+    }
+  });
   page.on("request", (request) => {
     const url = new URL(request.url());
     if (url.origin === origin && !url.pathname.startsWith("/dj-tutorial/")) {
@@ -35,7 +65,8 @@ test("tutorial loads all slides and keeps its assets under the tutorial path", a
   for (let slide = 1; slide <= 11; slide++) {
     await page.goto(`/dj-tutorial/#/${slide}`);
     const currentSlide = page.locator(`[data-slidev-no="${slide}"]`);
-    await expect(currentSlide).toBeVisible();
+    // The slide wrapper appears before its lazy-loaded content on a real network.
+    await expect(currentSlide.locator(".slidev-layout")).toBeVisible();
     // All slide images must decode, including logos and the external outro GIFs.
     await expect
       .poll(() =>

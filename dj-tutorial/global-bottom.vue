@@ -18,6 +18,8 @@ const { next, prev, hasNext, hasPrev } = useNav()
 <style scoped>
 .deck-navigation {
   position: absolute;
+  /* Keep controls above the slide's stacking context after fades settle. */
+  z-index: 10;
   right: 12px;
   bottom: 8px;
   display: flex;

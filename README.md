@@ -42,7 +42,7 @@ pnpm exec playwright install chromium # First time; add --with-deps on Linux CI
 pnpm test                             # Builds, checks rebuild cleanup, then browser tests
 ```
 
-`pnpm test:build` checks generated output and repeated builds. `pnpm test:browser` tests the existing `dist/` with Wrangler: slide navigation, assets, Astro routes, and 404s. Builds fetch current Mixcloud data and require network access. To run the browser checks against a deployed preview instead:
+`pnpm test:build` checks generated output and repeated builds. `pnpm test:browser` tests the existing `dist/` with Wrangler: slide navigation, assets, Astro routes, and 404s. Browser checks suppress Cloudflare's third-party analytics script; tutorial assets load normally. Builds fetch current Mixcloud data and require network access. To run the browser checks against a deployed preview instead:
 
 ```sh
 TEST_BASE_URL=https://<preview-host> pnpm test:browser
