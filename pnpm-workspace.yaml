@@ -1,7 +1,15 @@
+packages:
+  - dj-tutorial
+
+# Slidev 52's Twoslash integration crashes with FloatingVue 5.4.
+# Keep the browser console regression test when revisiting this pin.
+overrides:
+  floating-vue: 5.2.2
+
 allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
 minimumReleaseAgeExclude:
-  - '@astrojs/cloudflare@14.1.4'
+  - "@astrojs/cloudflare@14.1.4"
   - astro@7.1.3

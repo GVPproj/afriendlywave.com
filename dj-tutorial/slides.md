@@ -1,5 +1,6 @@
 ---
 theme: default
+routerMode: hash
 title: Your First DJ Mix
 info: |
   A ten-minute introduction to DJing for ages 8–16.

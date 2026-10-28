@@ -3,10 +3,20 @@
   "type": "module",
   "version": "0.0.1",
   "packageManager": "pnpm@11.15.1",
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "dev:tutorial": "pnpm --filter intro-to-djing dev",
+    "build": "pnpm build:site && pnpm --filter intro-to-djing build && node scripts/copy-tutorial.mjs",
+    "build:site": "astro build",
+    "check": "astro check",
+    "test:build": "node --test tests/build.test.mjs",
+    "test:browser": "playwright test",
+    "test": "pnpm test:build && pnpm test:browser",
     "preview": "astro preview",
+    "preview:cloudflare": "wrangler dev --local",
     "astro": "astro",
     "poller:dev": "cd workers/mixcloud-poller && pnpm dev",
     "poller:deploy": "cd workers/mixcloud-poller && pnpm deploy"
@@ -17,10 +27,13 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@playwright/test": "^1.64.1",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "sharp": "^0.35.4",
+    "typescript": "^5.9.3",
     "wrangler": "^4.128.0"
   }
 }
