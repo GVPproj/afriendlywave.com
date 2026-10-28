@@ -21,7 +21,7 @@ const { next, prev, hasNext, hasPrev } = useNav()
   /* Keep controls above the slide's stacking context after fades settle. */
   z-index: 10;
   right: 12px;
-  bottom: 8px;
+  top: 8px;
   display: flex;
   gap: 4px;
 }
