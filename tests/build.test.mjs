@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { access, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("../", import.meta.url);
@@ -11,12 +11,13 @@ function build() {
     stdio: "inherit",
     timeout: 180_000,
   });
-  assert.equal(result.status, 0, "combined build must succeed");
+  assert.equal(result.status, 0, "Astro build must succeed");
 }
 
-test("root build publishes both sites and removes deleted tutorial assets on rebuild", async () => {
-  const source = new URL("dj-tutorial/public/build-test-stale.txt", root);
+test("Astro publishes the native tutorial and removes deleted public assets on rebuild", async () => {
+  const source = new URL("public/dj-tutorial/build-test-stale.txt", root);
   const published = new URL("dist/dj-tutorial/build-test-stale.txt", root);
+  await mkdir(new URL("public/dj-tutorial/", root), { recursive: true });
   await writeFile(source, "temporary tutorial asset", { flag: "wx" });
   try {
     build();
@@ -30,14 +31,64 @@ test("root build publishes both sites and removes deleted tutorial assets on reb
         /<html/,
       );
     }
-    const assets = await readdir(new URL("dist/dj-tutorial/assets/", root));
+    const tutorial = await readFile(
+      new URL("dist/dj-tutorial/index.html", root),
+      "utf8",
+    );
+    assert.match(
+      tutorial,
+      /<[a-z][^>]*\sdata-dj-deck(?:[\s=>])/,
+      "native deck is in the page",
+    );
+    assert.match(tutorial, /<header\b/, "shared header is rendered");
+    assert.match(tutorial, /<footer\b/, "shared footer is rendered");
+    assert.match(
+      tutorial,
+      /<template\b[^>]*\bid="mixcloud-data"[^>]*\bdata-src="https:\/\/www\.mixcloud\.com\/widget\/iframe/,
+      "shared Mixcloud player configuration is published",
+    );
+    assert.deepEqual(
+      [...tutorial.matchAll(/<section\b[^>]*\bid="(slide-\d+)"/g)].map(
+        (match) => match[1],
+      ),
+      Array.from({ length: 11 }, (_, index) => `slide-${index + 1}`),
+      "all eleven slides have stable deep-link targets in workshop order",
+    );
+    assert.doesNotMatch(
+      tutorial,
+      /data-(?:presenter|speaker|slide)-notes|class="[^"]*(?:presenter|speaker)-notes|\/dj-tutorial\/(?:presenter|notes)\b|@slidev|\bTIME:|\bSAY:|MUSIC PLACEHOLDERS|SCREENSHOT PLACEHOLDER/,
+    );
+    for (const path of [
+      "presenter/index.html",
+      "presenter.html",
+      "notes/index.html",
+      "notes.html",
+    ]) {
+      await assert.rejects(access(new URL(`dist/dj-tutorial/${path}`, root)), {
+        code: "ENOENT",
+      });
+    }
+
+    const assets = [
+      ...tutorial.matchAll(
+        /(?:src|href)="(\/_astro\/[^"?#]+\.(?:js|css))(?:[?#][^"]*)?"/g,
+      ),
+    ].map((match) => match[1]);
     assert.ok(
       assets.some((asset) => asset.endsWith(".js")),
-      "tutorial JavaScript is published",
+      "page loads Astro JavaScript",
     );
     assert.ok(
       assets.some((asset) => asset.endsWith(".css")),
-      "tutorial styles are published",
+      "page loads Astro styles",
+    );
+    for (const asset of new Set(assets)) {
+      await access(new URL(`dist${asset}`, root));
+    }
+    assert.match(
+      tutorial,
+      /\/fonts\/[^"')\s]+\.woff2/,
+      "page uses shared fonts",
     );
     assert.equal(await readFile(published, "utf8"), "temporary tutorial asset");
 
@@ -49,8 +100,5 @@ test("root build publishes both sites and removes deleted tutorial assets on reb
   } finally {
     await rm(source, { force: true });
     await rm(published, { force: true });
-    await rm(new URL("dj-tutorial/dist/build-test-stale.txt", root), {
-      force: true,
-    });
   }
 });
