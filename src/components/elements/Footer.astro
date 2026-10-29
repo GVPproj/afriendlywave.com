@@ -12,14 +12,22 @@ const year = new Date().getFullYear();
       <div class="w-48" role="img" aria-label="A Friendly Wave">
         <Banner />
       </div>
-      <p>
-        <span class="text-muted">Reach out: </span>
+      <div class="w-full sm:w-auto sm:min-w-72">
+        <p>
+          <span class="text-muted">Reach out: </span>
+          <a
+            href="mailto:hello@afriendlywave.com"
+            class="inline-flex min-h-11 items-center break-all"
+            >hello@afriendlywave.com</a
+          >
+        </p>
         <a
-          href="mailto:hello@afriendlywave.com"
-          class="inline-flex min-h-11 items-center break-all"
-          >hello@afriendlywave.com</a
+          href="/dj-tutorial"
+          class="border-ink/20 hover:text-highlight mt-4 flex min-h-11 items-center border-y py-3 no-underline transition-colors motion-reduce:transition-none"
         >
-      </p>
+          DJ Workshop Slides
+        </a>
+      </div>
     </div>
     <p class="text-muted mt-panel text-sm">&copy; {year} A Friendly Wave</p>
   </div>
