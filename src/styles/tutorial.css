@@ -142,7 +142,13 @@
 }
 
 .tutorial-deck .title-toc a {
-  color: var(--workshop-cyan);
+  color: var(--color-accent);
+}
+
+@media (hover: hover) {
+  .tutorial-deck .title-toc a:hover {
+    color: var(--color-highlight);
+  }
 }
 
 .tutorial-deck .photo-slide {
@@ -364,7 +370,7 @@
   min-width: 0;
   padding: 1.633cqw;
   background: var(--workshop-panel);
-  border-radius: 1.429cqw;
+  border-radius: var(--radius-card);
 }
 
 .tutorial-deck .deck-card--a {
@@ -1195,7 +1201,6 @@
   .tutorial-deck .mixer-card,
   .tutorial-deck .deck-setup--preview :is(.deck-card, .mixer-card) {
     padding: var(--spacing-panel);
-    border-radius: 0.875rem;
   }
 
   .tutorial-deck .deck-heading {

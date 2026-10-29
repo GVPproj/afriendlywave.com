@@ -69,6 +69,15 @@ test("Astro publishes the native tutorial and removes deleted public assets on r
       });
     }
 
+    for (const name of ["outro-left.gif", "outro-right.gif"]) {
+      assert.ok(tutorial.includes(`src="/dj-tutorial/${name}"`));
+      assert.deepEqual(
+        await readFile(new URL(`dist/dj-tutorial/${name}`, root)),
+        await readFile(new URL(`public/dj-tutorial/${name}`, root)),
+        `${name} is published unchanged`,
+      );
+    }
+
     const assets = [
       ...tutorial.matchAll(
         /(?:src|href)="(\/_astro\/[^"?#]+\.(?:js|css))(?:[?#][^"]*)?"/g,
