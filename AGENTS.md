@@ -26,3 +26,13 @@ Use `text-muted` for secondary text rather than text opacity modifiers.
 
 For visual changes, read `docs/identity.md`.
 For font changes, read `public/fonts/README.md`.
+
+## Agent skills
+
+### Issue tracker
+
+Issues are tracked in GitHub Issues for `GVPproj/afriendlywave.com`. See `docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+Domain documentation uses a single-context layout. See `docs/agents/domain.md`.
