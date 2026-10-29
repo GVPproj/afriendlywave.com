@@ -1,0 +1,232 @@
+---
+import TitleSlide from "./slides/TitleSlide.astro";
+import ControllerSlide from "./slides/ControllerSlide.astro";
+import DecksSlide from "./slides/DecksSlide.astro";
+import CrossfadeSlide from "./slides/CrossfadeSlide.astro";
+import BeatSlide from "./slides/BeatSlide.astro";
+import HeadphonesSlide from "./slides/HeadphonesSlide.astro";
+import BeatmatchSlide from "./slides/BeatmatchSlide.astro";
+import TransitionSlide from "./slides/TransitionSlide.astro";
+import SoftwareSlide from "./slides/SoftwareSlide.astro";
+import MusicSlide from "./slides/MusicSlide.astro";
+import OutroSlide from "./slides/OutroSlide.astro";
+import "../../styles/tutorial.css";
+
+const slides = [
+  {
+    Content: TitleSlide,
+    title: "Your First DJ Mix",
+    className: "wordmark-slide",
+  },
+  {
+    Content: ControllerSlide,
+    title: "Pioneer DJ DDJ-400 controller",
+    className: "photo-slide",
+  },
+  { Content: DecksSlide, title: "Meet your decks" },
+  { Content: CrossfadeSlide, title: "Crossfade without beat matching" },
+  { Content: BeatSlide, title: "Find the beat" },
+  { Content: HeadphonesSlide, title: "Listen before everyone else" },
+  { Content: BeatmatchSlide, title: "Crossfade from A to B" },
+  { Content: TransitionSlide, title: "Make your first transition" },
+  {
+    Content: SoftwareSlide,
+    title: "DJ software options",
+    className: "software-slide",
+  },
+  {
+    Content: MusicSlide,
+    title: "Where to find music",
+    className: "software-slide music-slide",
+  },
+  {
+    Content: OutroSlide,
+    title: "DJ workshop outro",
+    className: "photo-pair-slide gif-pair-slide",
+  },
+];
+---
+
+<div class="tutorial-deck" data-dj-deck>
+  <div class="slide-canvas">
+    {
+      slides.map(({ Content, title, className }, index) => (
+        <section
+          id={`slide-${index + 1}`}
+          class:list={["workshop-slide", className]}
+          aria-label={`${index + 1} / ${slides.length}: ${title}`}
+          hidden={index !== 0}
+          tabindex="-1"
+        >
+          <Content />
+        </section>
+      ))
+    }
+  </div>
+  <nav class="deck-navigation" aria-label="Slide navigation">
+    <button
+      type="button"
+      data-previous
+      aria-label="Previous slide"
+      title="Previous (←)"
+      disabled>← Previous</button
+    >
+    <span data-counter role="status" aria-live="polite" aria-atomic="true"
+      >1 / 11</span
+    >
+    <button type="button" data-next aria-label="Next slide" title="Next (→)"
+      >Next →</button
+    >
+  </nav>
+</div>
+
+<script>
+  let cleanup: (() => void) | undefined;
+
+  document.addEventListener("astro:page-load", () => {
+    cleanup?.();
+    const deck = document.querySelector<HTMLElement>("[data-dj-deck]");
+    if (!deck) return;
+
+    const slides = [
+      ...deck.querySelectorAll<HTMLElement>(".slide-canvas > section"),
+    ];
+    const previous = deck.querySelector<HTMLButtonElement>("[data-previous]")!;
+    const next = deck.querySelector<HTMLButtonElement>("[data-next]")!;
+    const counter = deck.querySelector<HTMLElement>("[data-counter]")!;
+    const controller = new AbortController();
+    const { signal } = controller;
+    cleanup = () => controller.abort();
+    const routeState = history.state;
+    let current = 1;
+
+    function render() {
+      // Native fragment changes create entries without Astro's route metadata.
+      if (history.state === null && routeState)
+        history.replaceState(routeState, "");
+      const match = /^#slide-(\d+)$/.exec(location.hash);
+      const requested = match ? Number(match[1]) : 1;
+      current =
+        Number.isSafeInteger(requested) &&
+        requested >= 1 &&
+        requested <= slides.length
+          ? requested
+          : 1;
+      const focusWillBeHidden = slides.some(
+        (slide, index) =>
+          index !== current - 1 && slide.contains(document.activeElement),
+      );
+      slides.forEach((slide, index) => {
+        slide.hidden = index !== current - 1;
+      });
+      if (focusWillBeHidden) slides[current - 1].focus({ preventScroll: true });
+      previous.disabled = current === 1;
+      next.disabled = current === slides.length;
+      counter.textContent = `${current} / ${slides.length}`;
+    }
+
+    function goTo(slide: number) {
+      if (slide < 1 || slide > slides.length || slide === current) return;
+      // Retain Astro's history metadata so Back from another site page can
+      // restore this route as well as navigating within the deck.
+      history.pushState(history.state, "", `#slide-${slide}`);
+      render();
+      const inset = parseFloat(getComputedStyle(canvas).scrollMarginTop);
+      if (canvas.getBoundingClientRect().top < inset) {
+        canvas.scrollIntoView({ block: "start", behavior: "instant" });
+      }
+    }
+
+    deck.addEventListener(
+      "click",
+      (event) => {
+        const link =
+          event.target instanceof Element
+            ? event.target.closest<HTMLAnchorElement>("a[href^='#slide-']")
+            : null;
+        if (
+          !link ||
+          event.button !== 0 ||
+          event.altKey ||
+          event.ctrlKey ||
+          event.metaKey ||
+          event.shiftKey
+        )
+          return;
+        event.preventDefault();
+        goTo(Number(link.hash.slice("#slide-".length)));
+      },
+      { signal },
+    );
+    const canvas = deck.querySelector<HTMLElement>(".slide-canvas")!;
+    let touchStart: { x: number; y: number; id: number } | undefined;
+    canvas.addEventListener(
+      "pointerdown",
+      (event) => {
+        if (event.pointerType !== "touch" || !event.isPrimary) return;
+        touchStart = {
+          x: event.clientX,
+          y: event.clientY,
+          id: event.pointerId,
+        };
+      },
+      { signal },
+    );
+    canvas.addEventListener(
+      "pointercancel",
+      () => {
+        touchStart = undefined;
+      },
+      { signal },
+    );
+    canvas.addEventListener(
+      "pointerup",
+      (event) => {
+        const start = touchStart;
+        touchStart = undefined;
+        if (!start || event.pointerId !== start.id) return;
+        const dx = event.clientX - start.x;
+        const dy = event.clientY - start.y;
+        if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+          goTo(current + (dx < 0 ? 1 : -1));
+        }
+      },
+      { signal },
+    );
+    previous.addEventListener("click", () => goTo(current - 1), { signal });
+    next.addEventListener("click", () => goTo(current + 1), { signal });
+    window.addEventListener("hashchange", render, { signal });
+    window.addEventListener("popstate", render, { signal });
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        const target = event.target instanceof Element ? event.target : null;
+        if (
+          event.defaultPrevented ||
+          event.altKey ||
+          event.ctrlKey ||
+          event.metaKey ||
+          event.shiftKey ||
+          target?.closest(
+            "input, textarea, select, [contenteditable], [role='textbox']",
+          ) ||
+          (target?.closest("a, button") && !deck.contains(target))
+        )
+          return;
+        const destinations: Record<string, number> = {
+          ArrowLeft: current - 1,
+          ArrowRight: current + 1,
+          Home: 1,
+          End: slides.length,
+        };
+        if (!(event.key in destinations)) return;
+        event.preventDefault();
+        goTo(destinations[event.key]);
+      },
+      { signal },
+    );
+    render();
+  });
+
+  document.addEventListener("astro:before-swap", () => cleanup?.());
+</script>

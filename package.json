@@ -8,9 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "dev:tutorial": "pnpm --filter intro-to-djing dev",
-    "build": "pnpm build:site && pnpm --filter intro-to-djing build && node scripts/copy-tutorial.mjs",
-    "build:site": "astro build",
+    "build": "astro build",
     "check": "astro check",
     "test:build": "node --test tests/build.test.mjs",
     "test:browser": "playwright test",
