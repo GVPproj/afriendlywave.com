@@ -1,14 +1,171 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import TutorialDeck from "../components/tutorial/TutorialDeck.astro";
+import DeckSetup from "../components/tutorial/DeckSetup.astro";
+import "../styles/tutorial.css";
 ---
 
 <Layout
   title="Your First DJ Mix | A Friendly Wave"
-  description="An eleven-slide introduction to DJing: meet your decks, find the beat, and make your first transition."
+  description="A practical introduction to DJing: meet your decks, find the beat, and make your first transition."
 >
-  <main class="site-container tutorial-page">
-    <h1 class="sr-only">Your First DJ Mix</h1>
-    <TutorialDeck />
+  <main>
+    <article class="content-grid tutorial-article">
+      <header id="slide-1">
+        <h1 class="text-center text-4xl uppercase">Your First DJ Mix</h1>
+      </header>
+
+      <figure class="tutorial-illustration" id="slide-2">
+        <img
+          src="/dj-tutorial/dj-controller.jpg"
+          alt="Pioneer DDJ-400 DJ controller, with a deck on either side and a mixer in the centre"
+          width="1800"
+          height="1042"
+          class="w-full"
+        />
+        <figcaption class="text-muted">The DDJ-400 is one example; controls vary between setups.</figcaption>
+      </figure>
+
+      <section>
+        <h2>Before you start</h2>
+        <p>
+          Get your DJ software and headphone cueing set up. Choose two tracks
+          with clear beats and similar tempos.
+        </p>
+      </section>
+
+      <section id="slide-3">
+        <h2>Two decks and a mixer</h2>
+        <p>
+          Each deck holds one track: A plays while you prepare B. Track faders
+          control each track’s volume; master controls the overall level.
+        </p>
+      </section>
+      <figure class="tutorial-illustration">
+        <div class="site-container tutorial-artwork"><DeckSetup /></div>
+        <figcaption class="text-muted">Two decks hold the music; the mixer blends what you hear.</figcaption>
+      </figure>
+
+      <section id="slide-4">
+        <h2>Crossfade from A to B</h2>
+        <p>
+          Play A with the crossfader at A. Start B, then slide towards B:
+          the middle blends both tracks. You don’t have to match beats—choose
+          sparse sections and keep the overlap short.
+        </p>
+      </section>
+      <figure class="tutorial-illustration">
+        <div class="site-container tutorial-artwork"><DeckSetup mode="transition" /></div>
+        <figcaption class="text-muted">Blend towards B, then use A to prepare what comes next.</figcaption>
+      </figure>
+
+      <section id="slide-5">
+        <h2>Find the beat and the “1”</h2>
+        <p>
+          Tap along to the steady pulse. Try counting “1, 2, 3, 4”.
+        </p>
+      </section>
+      <figure class="tutorial-illustration">
+        <div class="site-container tutorial-artwork">
+          <div class="beat-row" role="img" aria-label="Count four steady beats: one, two, three, four">
+            {[1, 2, 3, 4].map((beat) => <div aria-hidden="true"><strong>{beat}</strong><span>TAP</span></div>)}
+          </div>
+        </div>
+      </figure>
+
+      <section id="slide-6">
+        <h2>Listen to the next track</h2>
+        <p>
+          Keep the crossfader at A. Use headphone CUE to preview B privately
+          and find its starting point. Headphone CUE selects what you hear;
+          deck CUE returns to a position in the track.
+        </p>
+      </section>
+      <figure class="tutorial-illustration">
+        <div class="site-container tutorial-artwork"><DeckSetup mode="preview" /></div>
+        <figcaption class="text-muted">The speakers play A while you preview B in headphones.</figcaption>
+      </figure>
+
+      <section id="slide-7">
+        <h2>Bring the beats together</h2>
+        <p>
+          For a longer blend, match the tempo and line up the beats.
+          Start B on A’s “1”, keeping the crossfader at A until you’re ready.
+        </p>
+      </section>
+      <figure class="tutorial-illustration">
+        <div class="site-container tutorial-artwork"><DeckSetup mode="transition" showBeats /></div>
+        <figcaption class="text-muted">Listen for the two tracks’ beats landing together as you blend.</figcaption>
+      </figure>
+
+      <section id="slide-8">
+        <h2>Make your first transition</h2>
+        <ol>
+          <li><strong>Choose B.</strong> Load the next track without interrupting A.</li>
+          <li><strong>Preview.</strong> Match the tempo and find B’s “1” in headphones.</li>
+          <li><strong>Start.</strong> Return B to its “1” and press Play on A’s “1”.</li>
+          <li><strong>Blend.</strong> Crossfade towards B. Pause A once it’s no longer audible.</li>
+        </ol>
+        <p>
+          Sound messy? Shorten the overlap and try again.
+        </p>
+      </section>
+
+      <section id="slide-9">
+        <h2>Software</h2>
+        <ul>
+          <li><a href="https://mixxx.org/">Mixxx</a> — free</li>
+          <li><a href="https://www.algoriddim.com/djay-pro">djay</a></li>
+          <li><a href="https://serato.com/dj">Serato DJ</a></li>
+          <li><a href="https://rekordbox.com/">rekordbox</a></li>
+          <li><a href="https://www.native-instruments.com/en/products/traktor/dj-software/traktor-pro-4/">Traktor Pro</a></li>
+        </ul>
+      </section>
+      <section id="slide-10">
+        <h2>Where to find music</h2>
+        <ul>
+          <li><a href="https://freemusicarchive.org/genre/House/">Free Music Archive — House</a></li>
+          <li><a href="https://bandcamp.com/">Bandcamp</a></li>
+        </ul>
+      </section>
+    </article>
   </main>
 </Layout>
+
+<style>
+  .tutorial-article > * {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  .tutorial-article > .tutorial-illustration {
+    grid-column: 1 / -1;
+  }
+
+  .tutorial-article :is(header, section) > * + * {
+    margin-top: var(--spacing-panel);
+  }
+
+  h2 {
+    font-size: calc(var(--text-body) * 1.5);
+    text-transform: uppercase;
+  }
+
+  :is(header, section, figure, #slide-11) {
+    scroll-margin-top: 6rem;
+  }
+
+  figcaption {
+    padding: var(--spacing-card) var(--spacing-gutter) 0;
+    text-align: center;
+    font-size: max(1rem, calc(var(--text-body) * 0.8));
+  }
+
+  ol, ul {
+    padding-left: 1.5em;
+    list-style: revert;
+  }
+
+  li + li {
+    margin-top: var(--spacing-bezel);
+  }
+</style>

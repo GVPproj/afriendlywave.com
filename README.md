@@ -1,10 +1,10 @@
 # afriendlywave.com
 
-A website for the Salt Spring listening space. We poll Mixcloud for new shows and rebuild the static Astro site when one is published. The [DJ tutorial](https://afriendlywave.com/dj-tutorial/) is an Astro-native deck within the shared site layout, including the header, footer, and Mixcloud player.
+A website for the Salt Spring listening space. We poll Mixcloud for new shows and rebuild the static Astro site when one is published. The [DJ tutorial](https://afriendlywave.com/dj-tutorial/) is a scrollable, illustrated guide within the shared site layout, including the header, footer, and Mixcloud player.
 
 ## Project guidance
 
-See [AGENTS.md](AGENTS.md) for development conventions and [docs/identity.md](docs/identity.md) for visual identity guidance. See [docs/dj-tutorial.md](docs/dj-tutorial.md) for tutorial editing and navigation.
+See [AGENTS.md](AGENTS.md) for development conventions and [docs/identity.md](docs/identity.md) for visual identity guidance. Edit the tutorial prose in `src/pages/dj-tutorial.astro`, its reusable deck illustration in `src/components/tutorial/DeckSetup.astro`, and illustration styles in `src/styles/tutorial.css`.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ pnpm install --frozen-lockfile
 pnpm dev # http://localhost:4322
 ```
 
-The same Astro server serves the tutorial at http://localhost:4322/dj-tutorial/. There is no separate tutorial package or development command. Slide links use hashes, e.g. `/dj-tutorial/#slide-3`, and work on refresh and with browser Back/Forward without a server fallback route.
+The same Astro server serves the tutorial at http://localhost:4322/dj-tutorial/. There is no separate tutorial package or development command. Legacy slide hashes, e.g. `/dj-tutorial/#slide-3`, remain as native anchors to the corresponding article sections.
 
 ## Build and preview
 
@@ -31,7 +31,7 @@ pnpm preview            # Astro preview of dist/ (use the URL printed in the ter
 pnpm preview:cloudflare # http://localhost:8787/dj-tutorial/
 ```
 
-Tutorial images and logos live in `public/dj-tutorial/` and are served under `/dj-tutorial/`; fonts are shared under `/fonts/`. Astro bundles scripts and styles under `/_astro/`. No separate deck build or copy step is needed.
+The tutorial controller photograph lives in `public/dj-tutorial/` and is served under `/dj-tutorial/`; fonts are shared under `/fonts/`. Astro bundles scripts and styles under `/_astro/`. No separate tutorial build or copy step is needed.
 
 ## Checks
 
@@ -41,7 +41,7 @@ pnpm exec playwright install chromium # First time; add --with-deps on Linux CI
 pnpm test                             # Builds, checks rebuild cleanup, then browser tests
 ```
 
-`pnpm test:build` checks generated pages, the native eleven-slide deck, shared layout and bundled assets, absence of presenter/notes pages, and removal of deleted public assets on rebuild. `pnpm test:browser` tests the existing `dist/` with Wrangler: slide navigation, deep links, assets, responsive behaviour, existing site routes, and 404s. Browser checks suppress Cloudflare's third-party analytics script; tutorial assets load normally. Builds fetch current Mixcloud data and require network access. To run browser checks against a deployed preview instead:
+`pnpm test:build` checks generated pages, the tutorial article, shared layout and bundled assets, absence of presenter/notes pages, and removal of deleted public assets on rebuild. `pnpm test:browser` tests the existing `dist/` with Wrangler: reading without JavaScript, legacy fragment links, assets, responsive full-bleed illustrations, reduced motion, existing site routes, and 404s. Browser checks suppress Cloudflare's third-party analytics script; tutorial assets load normally. Builds fetch current Mixcloud data and require network access. To run browser checks against a deployed preview instead:
 
 ```sh
 TEST_BASE_URL=https://<preview-host> pnpm test:browser

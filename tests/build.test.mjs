@@ -37,8 +37,8 @@ test("Astro publishes the native tutorial and removes deleted public assets on r
     );
     assert.match(
       tutorial,
-      /<[a-z][^>]*\sdata-dj-deck(?:[\s=>])/,
-      "native deck is in the page",
+      /<article\b/,
+      "standalone tutorial article is in the page",
     );
     assert.match(tutorial, /<header\b/, "shared header is rendered");
     assert.match(tutorial, /<footer\b/, "shared footer is rendered");
@@ -47,13 +47,11 @@ test("Astro publishes the native tutorial and removes deleted public assets on r
       /<template\b[^>]*\bid="mixcloud-data"[^>]*\bdata-src="https:\/\/www\.mixcloud\.com\/widget\/iframe/,
       "shared Mixcloud player configuration is published",
     );
-    assert.deepEqual(
-      [...tutorial.matchAll(/<section\b[^>]*\bid="(slide-\d+)"/g)].map(
-        (match) => match[1],
-      ),
-      Array.from({ length: 11 }, (_, index) => `slide-${index + 1}`),
-      "all eleven slides have stable deep-link targets in workshop order",
-    );
+    assert.doesNotMatch(tutorial, /data-dj-deck|Next slide|Previous slide|eleven-slide/);
+    assert.match(tutorial, /<ol\b/, "transition checklist is published");
+    for (const destination of ["https://mixxx.org/", "https://bandcamp.com/"]) {
+      assert.ok(tutorial.includes(`href="${destination}"`));
+    }
     assert.doesNotMatch(
       tutorial,
       /data-(?:presenter|speaker|slide)-notes|class="[^"]*(?:presenter|speaker)-notes|\/dj-tutorial\/(?:presenter|notes)\b|@slidev|\bTIME:|\bSAY:|MUSIC PLACEHOLDERS|SCREENSHOT PLACEHOLDER/,
@@ -69,14 +67,8 @@ test("Astro publishes the native tutorial and removes deleted public assets on r
       });
     }
 
-    for (const name of ["outro-left.gif", "outro-right.gif"]) {
-      assert.ok(tutorial.includes(`src="/dj-tutorial/${name}"`));
-      assert.deepEqual(
-        await readFile(new URL(`dist/dj-tutorial/${name}`, root)),
-        await readFile(new URL(`public/dj-tutorial/${name}`, root)),
-        `${name} is published unchanged`,
-      );
-    }
+    assert.doesNotMatch(tutorial, /outro-(?:left|right)\.gif/);
+    assert.match(tutorial, /src="\/dj-tutorial\/dj-controller.jpg"/);
 
     const assets = [
       ...tutorial.matchAll(
